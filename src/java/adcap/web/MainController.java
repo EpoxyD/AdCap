@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author Karsten
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("/test")
 //This is a comment
 
 public class MainController {

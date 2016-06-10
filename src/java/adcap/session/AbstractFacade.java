@@ -7,11 +7,13 @@ package adcap.session;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Karsten
  */
+@Component
 public abstract class AbstractFacade<T> {
 
     private Class<T> entityClass;

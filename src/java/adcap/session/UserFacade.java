@@ -6,9 +6,12 @@
 package adcap.session;
 
 import adcap.entity.User;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.Table;
 
 /**
  *
@@ -23,6 +26,19 @@ public class UserFacade extends AbstractFacade<User> {
     @Override
     protected EntityManager getEntityManager() {
         return em;
+    }
+    
+    public boolean checkCredentials(String userName, String password)
+    {
+        Query q = em.createQuery("SELECT u FROM User U WHERE u.username = :userName AND u.password = :password");
+        q.setParameter("userName", userName);
+        q.setParameter("password", password);
+        List<User> list = q.getResultList();
+        if(list.size()==1)
+        {
+            return true;
+        }
+        return false;
     }
 
     public UserFacade() {
