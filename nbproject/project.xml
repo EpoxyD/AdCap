@@ -31,6 +31,7 @@
             <config-files>
                 <config-file>web/WEB-INF/applicationContext.xml</config-file>
                 <config-file>web/WEB-INF/AdventureCapitalist-servlet.xml</config-file>
+                <config-file>web/WEB-INF/springBeanConfiguration.xml</config-file>
             </config-files>
             <config-file-groups>
                 <config-file-group name="Default Group">

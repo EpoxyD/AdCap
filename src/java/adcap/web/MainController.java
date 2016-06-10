@@ -28,7 +28,7 @@ public class MainController {
     public ModelAndView test(){
         String now = (new Date()).toString();
         logger.info("Returning exampleView view with " + now); 
-        return new ModelAndView("exampleView", "now", now);
+        return new ModelAndView("login", "now", now);
     } 
     
 }
