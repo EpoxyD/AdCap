@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 @RequestMapping("/")
+//This is a comment
 
 public class MainController {
     protected final Log logger = LogFactory.getLog(getClass()); 
