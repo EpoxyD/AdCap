@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author Karsten
  */
 @Controller
-@RequestMapping("/store/*")
+@RequestMapping("/")
 
 public class MainController {
     protected final Log logger = LogFactory.getLog(getClass()); 
