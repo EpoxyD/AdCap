@@ -28,16 +28,19 @@ public class UserFacade extends AbstractFacade<User> {
     }
         
     public boolean checkCredentials(String userName, String password)
-    {
-        Query q = em.createQuery("SELECT u FROM User U WHERE u.username = :userName AND u.password = :password");
-        q.setParameter("userName", userName);
-        q.setParameter("password", password);
-        List<User> list = q.getResultList();
-        if(list.size()==1)
+    { 
+        List<User> list = em.createNamedQuery("User.checkLogin").setParameter("userName", userName).setParameter("password", password).getResultList();
+        if(list.size() == 0)
         {
-            return true;
+            return false;
         }
-        return false;
+        return true;
+    }
+    
+    public List<User> getRanking()
+    { 
+        List<User> list = (List<User>) em.createNamedQuery("User.sortByMoney").setMaxResults(5).getResultList();
+        return list;
     }
 
     public UserFacade() {

@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import adcap.bean.LoginBean;
+import adcap.entity.User;
 import adcap.session.UserFacade;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;
@@ -60,8 +62,11 @@ public class LoginController {
 			if(isValidUser)
 			{
 				logger.info("User Login Successful");
+                                List<User> ranking = userFacade.getRanking();
+                                logger.info(ranking.get(0).getUsername());
 				request.setAttribute("loggedInUser", loginBean.getUsername());
 				model = new ModelAndView("mainPage");
+                                model.addObject("ranking", ranking);
 			}
 			else
 			{
