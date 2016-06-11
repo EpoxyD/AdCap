@@ -26,10 +26,14 @@ public class UserFacade extends AbstractFacade<User> {
         return em;
     }
         
-    public boolean checkCredentials(String userName, String password)
+    public User checkCredentials(String userName, String password)
     { 
         List<User> list = em.createNamedQuery("User.checkLogin").setParameter("userName", userName).setParameter("password", password).getResultList();
-        return !list.isEmpty();
+        if(!list.isEmpty())
+        {
+          return list.get(0);
+        }
+        return null;
     }
     
     public List<User> getRanking()

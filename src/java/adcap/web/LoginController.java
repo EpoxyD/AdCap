@@ -23,6 +23,7 @@ import java.util.logging.Logger;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.http.HttpSession;
 
 
 
@@ -58,23 +59,20 @@ public class LoginController {
                     logger.info("Logincontroller POST method");
                     logger.info(loginBean.getUsername());
                     logger.info(loginBean.getPassword());
-                    boolean isValidUser = userFacade.checkCredentials(loginBean.getUsername(), loginBean.getPassword());
-			if(isValidUser)
+                    User user = userFacade.checkCredentials(loginBean.getUsername(), loginBean.getPassword());
+			if(user != null)
 			{
 				logger.info("User Login Successful");
-                                List<User> ranking = userFacade.getRanking();
-				request.setAttribute("loggedInUser", loginBean.getUsername());
-				model = new ModelAndView("mainPage");
-                                model.addObject("ranking", ranking);
+                                HttpSession session = request.getSession();
+				model = new ModelAndView();
+                                model.setViewName("redirect:main");
 			}
 			else
 			{
                             logger.info("User Login Failed");
-                            model = new ModelAndView("login");
-                            model.addObject("loginBean", loginBean);
-                            request.setAttribute("message", "Invalid credentials!!");
+                            model = new ModelAndView();
+                            model.setViewName("redirect:");
 			}
-
 		}
 		catch(Exception e)
 		{
