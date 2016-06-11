@@ -12,8 +12,12 @@ nav{
     height: 150px !important;
 }
 
+footer{
+    height: 100px !important;
+}
+
 .mainpage{
-    height: 100vh;
+    height: calc(100vh -200px);
     width: 100vw;
     max-width: 100%;
 }

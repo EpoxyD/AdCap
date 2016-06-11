@@ -5,7 +5,7 @@
 --%>
 
 
-<div class="mainpage light-green accent-2">
+<main class="mainpage light-green accent-2">
     
-</div>
+</main>
 
