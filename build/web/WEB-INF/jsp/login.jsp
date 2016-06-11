@@ -18,7 +18,7 @@
         <sql:query var="result" dataSource="jdbc/adcap">
             SELECT * FROM user
         </sql:query>
-    
+            <h1>HELLO</h1>
         <table border="1">
             <!-- column headers -->
             <tr>

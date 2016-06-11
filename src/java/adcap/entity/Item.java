@@ -40,7 +40,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Item.findByPrice", query = "SELECT i FROM Item i WHERE i.price = :price"),
     @NamedQuery(name = "Item.findByDescription", query = "SELECT i FROM Item i WHERE i.description = :description"),
     @NamedQuery(name = "Item.findByLastUpdate", query = "SELECT i FROM Item i WHERE i.lastUpdate = :lastUpdate"),
-    @NamedQuery(name = "Item.findByStock", query = "SELECT i FROM Item i WHERE i.stock = :stock")})
+    @NamedQuery(name = "Item.findByStock", query = "SELECT i FROM Item i WHERE i.stock = :stock"),
+    @NamedQuery(name = "Item.findByRate", query = "SELECT i FROM Item i WHERE i.rate = :rate")})
 public class Item implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -56,9 +57,8 @@ public class Item implements Serializable {
     private String name;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "price")
-    private String price;
+    private int price;
     @Size(max = 255)
     @Column(name = "description")
     private String description;
@@ -71,6 +71,8 @@ public class Item implements Serializable {
     @NotNull
     @Column(name = "stock")
     private int stock;
+    @Column(name = "rate")
+    private Integer rate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
     private Collection<OrderedItem> orderedItemCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
@@ -83,7 +85,7 @@ public class Item implements Serializable {
         this.id = id;
     }
 
-    public Item(Integer id, String name, String price, Date lastUpdate, int stock) {
+    public Item(Integer id, String name, int price, Date lastUpdate, int stock) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -107,11 +109,11 @@ public class Item implements Serializable {
         this.name = name;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -137,6 +139,14 @@ public class Item implements Serializable {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public Integer getRate() {
+        return rate;
+    }
+
+    public void setRate(Integer rate) {
+        this.rate = rate;
     }
 
     @XmlTransient
