@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import adcap.bean.LoginBean;
 import adcap.entity.User;
 import adcap.session.UserFacade;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;
@@ -43,7 +42,12 @@ public class LoginController {
     	@RequestMapping(value="/",method=RequestMethod.GET)
 	public ModelAndView displayLogin(HttpServletRequest request, HttpServletResponse response)
 	{
-		ModelAndView model = new ModelAndView("login");
+                ModelAndView model = new ModelAndView("login");
+                if(request.getSession(false) != null)
+                {
+                    model.setViewName("redirect:main");
+                    return model;
+                }		
 		LoginBean loginBean = new LoginBean();
 		model.addObject("loginBean", loginBean);
                 logger.info("Logincontroller GET method");
@@ -64,6 +68,7 @@ public class LoginController {
 			{
 				logger.info("User Login Successful");
                                 HttpSession session = request.getSession();
+                                session.setAttribute("user", user);
 				model = new ModelAndView();
                                 model.setViewName("redirect:main");
 			}
