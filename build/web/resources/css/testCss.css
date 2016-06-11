@@ -9,5 +9,6 @@ and open the template in the editor.
 */
 
 h1 {
-    color: blue;
+    color: green;
+    background-color: blue;
 }
