@@ -8,7 +8,16 @@ and open the template in the editor.
     Author     : Evert
 */
 
-h1 {
-    margin: 0px;
+nav{
+    height: 150px !important;
 }
 
+.mainpage{
+    height: 100vh;
+    width: 100vw;
+    max-width: 100%;
+}
+
+.center{
+    text-align: center;
+}

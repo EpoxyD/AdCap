@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -9,14 +8,14 @@
         <link rel="stylesheet" href="<c:url value="/resources/css/mainCSS.css" />" type="text/css">
         <link rel="stylesheet" href="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" />" type="text/css">
         <link rel="stylesheet" href="<c:url value="http://fonts.googleapis.com/icon?family=Material+Icons" />" />
-        <title>Welcome</title>
+        <title>Main page</title>
     </head>
     <body>
-    <nav>
-        <div class="nav-wrapper">
-            <h1>Welcome ${loggedInUser}</h1>
-            <div class="right hide-on-med-and-down">
-                <h2>test</h2>
+    <nav class="light-green accent-4">
+        <div class="nav-wrapper container">
+            <p class="left center">Welcome ${loggedInUser}</p>
+            <div class="right">
+                <h4>test</h4>
             </div>
         </div>
     </nav>

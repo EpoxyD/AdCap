@@ -5,5 +5,7 @@
 --%>
 
 
-<center>Welcome ${loggedInUser}</center>
+<div class="mainpage light-green accent-2">
+    
+</div>
 
