@@ -42,15 +42,16 @@ public class LoginController {
     	@RequestMapping(value="/",method=RequestMethod.GET)
 	public ModelAndView displayLogin(HttpServletRequest request, HttpServletResponse response)
 	{
+                logger.info("Logincontroller GET Login Method");
                 ModelAndView model = new ModelAndView("login");
-                if(request.getSession(false) != null)
+                if(request.getSession(false) != null && request.getSession(false).getAttribute("user") != null)
                 {
+                    logger.info("Logincontroller user found, redirecting to main");
                     model.setViewName("redirect:main");
                     return model;
                 }		
 		LoginBean loginBean = new LoginBean();
 		model.addObject("loginBean", loginBean);
-                logger.info("Logincontroller GET method");
 		return model;
 	}
         
@@ -60,7 +61,7 @@ public class LoginController {
 		ModelAndView model= null;
 		try
 		{
-                    logger.info("Logincontroller POST method");
+                    logger.info("Logincontroller POST Logout Method");
                     logger.info(loginBean.getUsername());
                     logger.info(loginBean.getPassword());
                     User user = userFacade.checkCredentials(loginBean.getUsername(), loginBean.getPassword());
@@ -86,6 +87,18 @@ public class LoginController {
 
 		return model;
 	}
+        
+        
+        @RequestMapping(value="/logout",method=RequestMethod.POST)
+	public ModelAndView logOut(HttpServletRequest request, HttpServletResponse response)
+	{
+                logger.info("Logincontroller POST method Logout");
+                HttpSession session = request.getSession(false);
+                session.invalidate();
+                ModelAndView model = new ModelAndView();
+                model.setViewName("redirect:/");		
+		return model;
+	}        
 
     private UserFacade lookupUserFacadeBean() {
         try {

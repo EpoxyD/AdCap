@@ -35,6 +35,7 @@
                 </tr>
             </c:forEach>
         </table>
+                
  
         <form:form id="loginForm" method="post" action="/AdCap/login" modelAttribute="loginBean">
                 <form:label path="username">Enter your user-name</form:label>

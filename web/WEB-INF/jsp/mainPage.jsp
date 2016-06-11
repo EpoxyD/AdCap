@@ -13,8 +13,9 @@
 <title>Welcome</title>
 </head>
 <body>
-	<center>Welcome ${loggedInUser}</center>
-     <table border="1" cellpadding="5">
+	<center>Welcome ${userDetails.user.getUsername()}</center>
+        <div id="show" align="center"></div>
+        <table border="1" cellpadding="5">
             <caption><h2>User Ranking</h2></caption>
             <tr>
                 <th>Username</th>
@@ -27,5 +28,39 @@
                 </tr>
             </c:forEach>
         </table>
+        
+        <table border="1" cellpadding="5">
+            <caption><h2>Your Luc's</h2></caption>
+            <tr>
+                <th>Luc</th>
+                <th>Amount</th>
+            </tr>
+            <c:forEach var="itemInfo" items="${userDetails.itemInfo}" varStatus="loop">
+                <tr>
+                    <td><c:out value="${itemInfo.getName()}" /></td> 
+                    <td><c:out value="${userDetails.ownedItems.get(loop.index).getQuantity()}" /></td>
+                </tr>
+            </c:forEach>               
+        </table>
+        <h2>Your current rate is ${userDetails.totalRate} euro/second!</h2>
+        
+
+        
+    <form action="<c:url value="/logout" />" method="POST">
+        <input type="submit" name="action" value="logout" />
+    </form>
+        
+<script type="text/javascript"
+    src="http://code.jquery.com/jquery-1.10.1.min.js"></script>     
+<script>
+    $(document).ready(function() {
+                $('#show').text('Yo Monneh:'+ 0);
+                setInterval(function() {
+                    var randomnumber = Math.floor(Math.random() * 100);
+                    $('#show').text('Yo Monneh:'+ randomnumber);
+                }, 3000);
+            });
+</script>
+        
 </body>
 </html>

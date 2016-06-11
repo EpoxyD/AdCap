@@ -20,10 +20,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.request;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import adcap.session.UserManager;
+import java.util.Map;
 
 /**
  *
@@ -35,18 +35,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 public class MainController {
 
+    UserManager userManager = lookupUserManagerBean();
+
     UserFacade userFacade = lookupUserFacadeBean();
+    
     protected final Log logger = LogFactory.getLog(getClass()); 
 
     @RequestMapping(value="/main", method=RequestMethod.GET)
     public ModelAndView main(HttpServletRequest request, HttpServletResponse response){
-        logger.info("MainController GET method");
+        logger.info("MainController GET main method");
         HttpSession session = request.getSession(false);
+        User user = (User) session.getAttribute("user");
+        logger.info(user);
         ModelAndView model = new ModelAndView("mainPage");
         List<User> ranking = userFacade.getRanking();
 	model = new ModelAndView("mainPage");
         model.addObject("ranking", ranking);
-
+        Map userDetails = userManager.getUserDetails(user);
+        model.addObject("userDetails", userDetails);
         return model;
     } 
 
@@ -59,5 +65,17 @@ public class MainController {
             throw new RuntimeException(ne);
         }
     }
+
+    private UserManager lookupUserManagerBean() {
+        try {
+            Context c = new InitialContext();
+            return (UserManager) c.lookup("java:global/Distr_AdvCap/UserManager!adcap.session.UserManager");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+
     
 }
