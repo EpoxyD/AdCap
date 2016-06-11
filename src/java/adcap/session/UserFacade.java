@@ -10,7 +10,6 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 /**
  *
@@ -30,11 +29,7 @@ public class UserFacade extends AbstractFacade<User> {
     public boolean checkCredentials(String userName, String password)
     { 
         List<User> list = em.createNamedQuery("User.checkLogin").setParameter("userName", userName).setParameter("password", password).getResultList();
-        if(list.size() == 0)
-        {
-            return false;
-        }
-        return true;
+        return !list.isEmpty();
     }
     
     public List<User> getRanking()
