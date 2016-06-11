@@ -6,9 +6,6 @@
 package adcap.filter;
 
 import java.io.IOException;
-import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -37,9 +34,9 @@ public class SessionFilter implements Filter {
         HttpSession session = req.getSession(false);
 
         // if session doesn't exist, forward user to welcome page
-        if (session == null) {
+        if (session == null || session.getAttribute("user") == null) {
             try {
-                logger.info("Filter: No session available.");
+                logger.info("Filter: No /user available.");
                 req.getRequestDispatcher("/").forward(request, response);
             } catch (Exception ex) {
                 ex.printStackTrace();

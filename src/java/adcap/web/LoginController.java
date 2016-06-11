@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import adcap.bean.LoginBean;
 import adcap.entity.User;
 import adcap.session.UserFacade;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;
@@ -43,10 +42,16 @@ public class LoginController {
     	@RequestMapping(value="/",method=RequestMethod.GET)
 	public ModelAndView displayLogin(HttpServletRequest request, HttpServletResponse response)
 	{
-		ModelAndView model = new ModelAndView("login");
+                logger.info("Logincontroller GET Login Method");
+                ModelAndView model = new ModelAndView("login");
+                if(request.getSession(false) != null && request.getSession(false).getAttribute("user") != null)
+                {
+                    logger.info("Logincontroller user found, redirecting to main");
+                    model.setViewName("redirect:main");
+                    return model;
+                }		
 		LoginBean loginBean = new LoginBean();
 		model.addObject("loginBean", loginBean);
-                logger.info("Logincontroller GET method");
 		return model;
 	}
         
@@ -56,7 +61,7 @@ public class LoginController {
 		ModelAndView model= null;
 		try
 		{
-                    logger.info("Logincontroller POST method");
+                    logger.info("Logincontroller POST Logout Method");
                     logger.info(loginBean.getUsername());
                     logger.info(loginBean.getPassword());
                     User user = userFacade.checkCredentials(loginBean.getUsername(), loginBean.getPassword());
@@ -64,6 +69,7 @@ public class LoginController {
 			{
 				logger.info("User Login Successful");
                                 HttpSession session = request.getSession();
+                                session.setAttribute("user", user);
 				model = new ModelAndView();
                                 model.setViewName("redirect:main");
 			}
@@ -81,6 +87,18 @@ public class LoginController {
 
 		return model;
 	}
+        
+        
+        @RequestMapping(value="/logout",method=RequestMethod.POST)
+	public ModelAndView logOut(HttpServletRequest request, HttpServletResponse response)
+	{
+                logger.info("Logincontroller POST method Logout");
+                HttpSession session = request.getSession(false);
+                session.invalidate();
+                ModelAndView model = new ModelAndView();
+                model.setViewName("redirect:/");		
+		return model;
+	}        
 
     private UserFacade lookupUserFacadeBean() {
         try {
