@@ -63,7 +63,6 @@ public class LoginController {
 			{
 				logger.info("User Login Successful");
                                 List<User> ranking = userFacade.getRanking();
-                                logger.info(ranking.get(0).getUsername());
 				request.setAttribute("loggedInUser", loginBean.getUsername());
 				model = new ModelAndView("mainPage");
                                 model.addObject("ranking", ranking);
