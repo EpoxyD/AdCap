@@ -11,7 +11,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.Table;
 
 /**
  *
@@ -27,7 +26,7 @@ public class UserFacade extends AbstractFacade<User> {
     protected EntityManager getEntityManager() {
         return em;
     }
-    
+        
     public boolean checkCredentials(String userName, String password)
     {
         Query q = em.createQuery("SELECT u FROM User U WHERE u.username = :userName AND u.password = :password");
