@@ -41,9 +41,9 @@ public class ShoppingCartItem {
     }
     
     public double getTotal(){
-        double amount = 0;
-        double price = 5;   //TODO: retrieve price from product--> item.getPrice().doubleValue(); -->currently price is stored as a string
-        amount = price * this.getQuantity();
+        double price = item.getPrice();   
+        double qty = this.getQuantity();
+        double amount = qty * price;
         return amount;
     }
 }
