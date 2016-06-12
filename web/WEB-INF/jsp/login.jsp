@@ -45,7 +45,6 @@
             <form:label path="username">Please enter your password</form:label>
             <form:password id="password" name="password" path="password" /><br>
             <input type="submit" value="Submit" />
-        </form:form>            
-
+        </form:form>   
     </body>
 </html>

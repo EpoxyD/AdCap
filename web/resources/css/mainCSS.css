@@ -27,3 +27,79 @@ footer{
     height:30px;
     width:100%;
 }
+
+header, main, footer {
+    padding-left: 240px;
+}
+
+#inline{
+    display: inline;
+}
+
+main {
+    height: 100vh;
+}
+
+.card-image{
+    height: 100px;
+    overflow: hidden;
+}
+
+.card-title{
+    font-size: 500px;
+}
+
+.card{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#profilepicture{
+    position: relative;
+    top: 25px;
+    display: block;
+    margin: auto;
+    height: 100px;
+    width: 100px;
+}
+
+.circle{
+    border: solid 1px black;
+}
+
+.profile{
+    background-image: url("../img/defaultbackground.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 150px;
+    width: 100%;
+}
+
+#buylink {
+    text-decoration: none;
+}
+
+.strokeme
+{
+    text-shadow:
+        -2px -2px 0 #212121,
+        2px -2px 0 #212121,
+        -2px 2px 0 #212121,
+        2px 2px 0 #212121;
+    text-align: center;
+    line-height: 100px;
+    font-size: 60px;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@media only screen and (max-width : 992px) {
+    header, main, footer {
+        padding-left: 0;
+    }
+}

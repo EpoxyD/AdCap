@@ -18,17 +18,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author Karsten
  */
 @Controller
-@RequestMapping("/test")
-//This is a comment
-
+@RequestMapping("/main")
 public class MainController {
     protected final Log logger = LogFactory.getLog(getClass()); 
-    @RequestMapping(method=RequestMethod.GET)
-
-    public ModelAndView test(){
-        String now = (new Date()).toString();
-        logger.info("Returning exampleView view with " + now); 
-        return new ModelAndView("login", "now", now);
-    } 
+    
+//    @RequestMapping(method=RequestMethod.GET)
+//    public ModelAndView test(){
+//        String now = (new Date()).toString();
+//        logger.info("Returning exampleView view with " + now); 
+//        return new ModelAndView("login", "now", now);
+//    } 
+    
+    @RequestMapping(value = "/shop")
+    public ModelAndView getShop() {
+        logger.info("Build a new Shop");
+        return new ModelAndView("shop");
+    }
     
 }
