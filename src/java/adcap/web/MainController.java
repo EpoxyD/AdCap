@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import adcap.session.UserManager;
 import java.util.Map;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.client.RestTemplate;
 
 /**
  *
@@ -56,6 +58,20 @@ public class MainController {
         model.addObject("userDetails", userDetails);
         return model;
     } 
+    
+    //XML Based REST Client
+    @RequestMapping(value="/user/{id}", method=RequestMethod.GET)
+    public ModelAndView main(HttpServletRequest request, HttpServletResponse response, @PathVariable("id") int id){
+        logger.info("MainController GET User method");
+        ModelAndView model = new ModelAndView("userView");
+        RestTemplate restTemplate = new RestTemplate();
+        User user = restTemplate.getForObject("http://localhost:57225/AdCap"+"/searchUser/"+id, User.class);
+        logger.info(user);
+        Map userDetails = userManager.getUserDetails(user);
+        model.addObject("userDetails", userDetails);
+        logger.info(userDetails.toString());
+        return model;
+    }     
 
     private UserFacade lookupUserFacadeBean() {
         try {
