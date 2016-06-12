@@ -6,13 +6,14 @@
 package adcap.cart;
 
 import adcap.entity.Item;
+import java.io.Serializable;
 import java.util.*;
 
 /**
  *
  * @author wouter
  */
-public class ShoppingCart {
+public class ShoppingCart implements Serializable{
     List<ShoppingCartItem> items;
     int numberOfItems;
     double total;
