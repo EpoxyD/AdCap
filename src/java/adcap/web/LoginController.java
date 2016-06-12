@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import adcap.bean.LoginBean;
+import adcap.cart.ShoppingCart;
 import adcap.entity.User;
 import adcap.session.UserFacade;
 import java.net.URI;
@@ -72,6 +73,10 @@ public class LoginController {
 				logger.info("User Login Successful");
                                 HttpSession session = request.getSession();
                                 session.setAttribute("user", user);
+                                
+                                ShoppingCart cart = new ShoppingCart();
+                                session.setAttribute("cart", cart);
+                                
 				model = new ModelAndView();
                                 model.setViewName("redirect:main");
 			}
