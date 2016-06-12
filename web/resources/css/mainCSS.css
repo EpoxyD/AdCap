@@ -8,20 +8,22 @@ and open the template in the editor.
     Author     : Evert
 */
 
-nav{
-    height: 150px !important;
+.header-name{
+    margin: 0;
+    margin-right: 30px;
+    font-size: large;
+}
+
+.main-button{
+    margin: 20px 20px 20px 20px;
+    height: 50px;
+    width: 100%;
 }
 
 footer{
-    height: 100px !important;
-}
-
-.mainpage{
-    height: calc(100vh -200px);
-    width: 100vw;
-    max-width: 100%;
-}
-
-.center{
-    text-align: center;
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    height:30px;
+    width:100%;
 }
