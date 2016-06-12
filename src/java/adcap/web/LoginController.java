@@ -17,12 +17,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import adcap.bean.LoginBean;
 import adcap.entity.User;
 import adcap.session.UserFacade;
+import java.net.URI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpSession;
+import org.springframework.web.client.RestTemplate;
 
 
 
@@ -44,7 +46,7 @@ public class LoginController {
 	{
                 logger.info("Logincontroller GET Login Method");
                 ModelAndView model = new ModelAndView("login");
-                if(request.getSession(false) != null && request.getSession(false).getAttribute("user") != null)
+                if(request.getSession(false) != null && request.getSession(false).getAttribute("user") != null) //if there is a session and a user
                 {
                     logger.info("Logincontroller user found, redirecting to main");
                     model.setViewName("redirect:main");
@@ -98,7 +100,8 @@ public class LoginController {
                 ModelAndView model = new ModelAndView();
                 model.setViewName("redirect:/");		
 		return model;
-	}        
+	}
+
 
     private UserFacade lookupUserFacadeBean() {
         try {

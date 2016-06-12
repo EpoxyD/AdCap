@@ -14,7 +14,7 @@
 </head>
 <body>
 	<center>Welcome ${userDetails.user.getUsername()}</center>
-        <div id="show" align="center"></div>
+        <div id="show" align="center">Yo monneh: ${userDetails.user.getMoney()}</div>
         <table border="1" cellpadding="5">
             <caption><h2>User Ranking</h2></caption>
             <tr>
@@ -53,15 +53,23 @@
 <script type="text/javascript"
     src="http://code.jquery.com/jquery-1.10.1.min.js"></script>     
 <script>
+    var currentCash = <c:out value="${userDetails.user.getMoney()}" />;
+    var currentRate = <c:out value="${userDetails.totalRate}" />;
     $(document).ready(function() {
-                var currentCash = <c:out value="${userDetails.user.getMoney()}" />;
-                var currentRate = <c:out value="${userDetails.totalRate}" />;
-                $('#show').text('Yo Monneh:'+ currentCash);
                 setInterval(function() {
-                    currentCash += currentRate;
-                    $('#show').text('Yo Monneh:'+ currentCash);
+                currentCash += currentRate;
+                $('#show').text('Yo Monneh:'+ currentCash); 
+                var url = window.location.href;
+                $.ajax({
+                    url: url+"/userMoney/"+currentCash+"/id/"+<c:out value="${userDetails.user.getId()}" />,
+                    type: 'POST'
+                });  
                 }, 1000);
             });
+            
+         $(window).bind('beforeunload', function(){          
+  
+        });
 </script>
         
 </body>

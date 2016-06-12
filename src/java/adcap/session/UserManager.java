@@ -7,23 +7,12 @@ package adcap.session;
 
 
 import adcap.entity.Item;
-import adcap.entity.OrderedItem;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
-import javax.annotation.Resource;
 import javax.ejb.EJB;
-import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import adcap.session.UserFacade;
 import adcap.entity.User;
 import adcap.entity.UserHasItem;
@@ -43,8 +32,6 @@ public class UserManager {
     @EJB
     private UserHasItemFacade userHasItemFacade;
 
-    @EJB
-    private UserFacade userFacade;
     
             
     
@@ -71,8 +58,6 @@ public class UserManager {
         }
         
         logger.info(totalRate);
-
-        
 
         // add each item to detailMap
         detailMap.put("user", user);

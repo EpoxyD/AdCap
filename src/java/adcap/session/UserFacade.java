@@ -36,10 +36,42 @@ public class UserFacade extends AbstractFacade<User> {
         return null;
     }
     
+    public boolean checkUserExists(String userName)
+    { 
+        List<User> list = em.createNamedQuery("User.findByUsername").setParameter("username", userName).getResultList();
+        return !list.isEmpty();
+    }
+    
     public List<User> getRanking()
     { 
         List<User> list = (List<User>) em.createNamedQuery("User.sortByMoney").setMaxResults(5).getResultList();
         return list;
+    }
+    
+    public User getUser(int id)
+    { 
+        List<User> list = (List<User>) em.createNamedQuery("User.findById").setParameter("id", id).getResultList();
+        if(!list.isEmpty())
+        {
+          return list.get(0);
+        }
+        return null;
+    }
+    
+    public void updateUserMoney(User user)
+    { 
+        List<User> list = (List<User>) em.createNamedQuery("User.findById").setParameter("id",user.getId()).getResultList();
+        if(!list.isEmpty())
+        {
+          list.get(0).setMoney(user.getMoney());
+        }
+    }
+    
+    public void saveUser(User user)
+    {
+        em.getTransaction().begin();
+        em.persist(user);
+        em.getTransaction().commit();
     }
 
     public UserFacade() {

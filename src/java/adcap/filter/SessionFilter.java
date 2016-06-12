@@ -20,9 +20,9 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  *
- * @author Karsten
+ * @author Karsten 
  */
-@WebFilter(filterName = "SessionFilter", urlPatterns = {"/main/*"})
+@WebFilter(filterName = "SessionFilter", urlPatterns = {"/main*"})
 public class SessionFilter implements Filter {
       protected final Log logger = LogFactory.getLog(getClass()); 
       
