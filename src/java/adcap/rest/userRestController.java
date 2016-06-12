@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import adcap.entity.User;
 import adcap.session.UserFacade;
+import java.nio.charset.Charset;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.json.JsonObject;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -25,7 +27,15 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriComponentsBuilder;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
 
 
 
@@ -66,10 +76,22 @@ public class userRestController {
         }
         user.setPassword("SECURITYBLOCK");
         logger.info("User succesfully found " + id);
+
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
- 
     
+     @RequestMapping(value = "/lucluc", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+     public ModelAndView getLuc() {
+        ModelAndView model = new ModelAndView("lucView");
+
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "https://webwsq.aps.kuleuven.be/esap/public/odata/sap/zh_person_srv/Persons('00066920')?$format=json";
+        String response = restTemplate.getForObject(url, String.class);
+        logger.info(response);
+        model.addObject("json", response);
+        return model;
+    }
+
 
     private UserFacade lookupUserFacadeBean() {
         try {

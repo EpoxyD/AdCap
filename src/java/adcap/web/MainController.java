@@ -26,6 +26,15 @@ import adcap.session.UserManager;
 import java.util.Map;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import java.util.Arrays;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.support.RestGatewaySupport;
+import org.springframework.web.client.RestTemplate;
+
 
 /**
  *
@@ -61,7 +70,7 @@ public class MainController {
     
     //XML Based REST Client
     @RequestMapping(value="/user/{id}", method=RequestMethod.GET)
-    public ModelAndView main(HttpServletRequest request, HttpServletResponse response, @PathVariable("id") int id){
+    public ModelAndView viewUser(HttpServletRequest request, HttpServletResponse response, @PathVariable("id") int id){
         logger.info("MainController GET User method");
         ModelAndView model = new ModelAndView("userView");
         RestTemplate restTemplate = new RestTemplate();
@@ -73,6 +82,18 @@ public class MainController {
         return model;
     }     
 
+    
+    //XML Based REST Client
+    @RequestMapping(value="/luc/", method=RequestMethod.GET)
+    public ModelAndView viewLuc(HttpServletRequest request, HttpServletResponse response){
+        logger.info("MainController GET Luc method");
+        ModelAndView model = new ModelAndView("lucView");
+
+
+
+        return model;
+    }     
+    
     private UserFacade lookupUserFacadeBean() {
         try {
             Context c = new InitialContext();
