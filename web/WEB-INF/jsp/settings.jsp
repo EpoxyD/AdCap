@@ -1,5 +1,5 @@
 <main>
-    <div class="container-fluid" style="background-color: yellow">
+    <div class="container-fluid">
         
     </div>
 </main>

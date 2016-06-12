@@ -42,7 +42,7 @@ public class LoginController {
         return model;
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/main/mainpage", method = RequestMethod.POST)
     public ModelAndView executeLogin(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("loginBean") LoginBean loginBean) {
         ModelAndView model = null;
         try {

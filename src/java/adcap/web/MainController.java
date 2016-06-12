@@ -29,10 +29,22 @@ public class MainController {
 //        return new ModelAndView("login", "now", now);
 //    } 
     
+    @RequestMapping(value = "/mainpage")
+    public ModelAndView getHome() {
+        logger.info("Go Home");
+        return new ModelAndView("mainPage");
+    }
+    
     @RequestMapping(value = "/shop")
     public ModelAndView getShop() {
-        logger.info("Build a new Shop");
+        logger.info("Go Shopping");
         return new ModelAndView("shop");
+    }
+    
+    @RequestMapping(value = "/settings")
+    public ModelAndView getSettings() {
+        logger.info("Nosey little fucker aren't you?");
+        return new ModelAndView("settings");
     }
     
 }
