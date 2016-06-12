@@ -54,11 +54,13 @@
     src="http://code.jquery.com/jquery-1.10.1.min.js"></script>     
 <script>
     $(document).ready(function() {
-                $('#show').text('Yo Monneh:'+ 0);
+                var currentCash = <c:out value="${userDetails.user.getMoney()}" />;
+                var currentRate = <c:out value="${userDetails.totalRate}" />;
+                $('#show').text('Yo Monneh:'+ currentCash);
                 setInterval(function() {
-                    var randomnumber = Math.floor(Math.random() * 100);
-                    $('#show').text('Yo Monneh:'+ randomnumber);
-                }, 3000);
+                    currentCash += currentRate;
+                    $('#show').text('Yo Monneh:'+ currentCash);
+                }, 1000);
             });
 </script>
         
