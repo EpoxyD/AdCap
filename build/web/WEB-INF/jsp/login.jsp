@@ -23,7 +23,7 @@
         <link rel="stylesheet" href="<c:url value="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />">
         <title>Login</title>
     </head>
-    <body>
+    <body class="teal lighten-5">
         <sql:query var="result" dataSource="jdbc/adcap">
             SELECT * FROM user
         </sql:query>
@@ -32,7 +32,7 @@
             <a class="brand-logo valign center">A Game Of Lucs</a>
         </div>
     </nav>
-    <main class="teal lighten-4 loginbackground">
+    <main class="loginbackground">
         <div class="container">
             <div class="row">
                 <div class="col m12">

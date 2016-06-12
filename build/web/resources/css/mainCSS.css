@@ -8,6 +8,21 @@ and open the template in the editor.
     Author     : Evert
 */
 
+.floatright{
+    float: right;
+}
+
+.floatleft{
+    float: left;
+}
+
+.smallimage{
+    height: 100px;
+    width: auto;
+    border-radius: 5px;
+    margin:5px;
+}
+
 .circle{
     border: solid 1px black;
 }
@@ -95,6 +110,10 @@ main {
 
 #buylink {
     text-decoration: none;
+}
+
+.right-margin{
+    margin: 20px 20px 20px 20px !important;
 }
 
 .strokeme

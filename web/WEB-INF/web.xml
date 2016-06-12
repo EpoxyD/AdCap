@@ -14,6 +14,11 @@
         <param-name>inventoryImagePath</param-name>
         <param-value>/resources/img/inventory/</param-value>
     </context-param>
+    <context-param>
+        <description>Relative path to author images</description>
+        <param-name>authorImagePath</param-name>
+        <param-value>/resources/img/authors/</param-value>
+    </context-param>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>

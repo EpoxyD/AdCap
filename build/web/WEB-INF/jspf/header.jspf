@@ -11,9 +11,9 @@
         <link rel="stylesheet" href="<c:url value="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />">
         <title>Main page</title>
     </head>
-    <body class="teal lighten-4">
+    <body class="teal lighten-5">
     <nav class="teal darken-4">
-        <ul  id="slide-out" class="side-nav fixed">
+        <ul  id="slide-out" class="side-nav fixed teal lighten-4">
             <li>
                 <div class="profile" style="background-image: url(<c:url value="${initParam.sidebarImagePath}background.jpg" />); ">
                     <img id="profilepicture" class="circle" src="<c:url value="${initParam.sidebarImagePath}profilepicture.png"/>">
@@ -23,6 +23,7 @@
             <li><a href="mainpage">Main</a></li>
             <li><a href="shop">Shop</a></li>
             <li><a href="settings">Settings</a></li>
+            <li><a href="logout">Logout</a></li>
         </ul>
         <a href="#" data-activates="slide-out" class="button-collapse show-on-large">
             <i class="mdi-navigation-menu"></i>

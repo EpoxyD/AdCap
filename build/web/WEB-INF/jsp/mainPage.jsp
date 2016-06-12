@@ -5,52 +5,52 @@
 --%>
 
 
-<main class="maingame">
+<main>
     <div class="container-fluid" style="height: 100%; width: 100%;">
         <div class="row">
             <div class="col m9 center">
                 <h4>Inventory</h4>
                 <div class="col m4">
-                    <div class="card teal lighten-2">
+                    <div class="card teal lighten-3">
                         <div class="card-image">
                             <img src="<c:url value="${initParam.inventoryImagePath}lucvandeurzen.png" />">
                             <span class="card-title strokeme">Linux Luc</span>
                         </div>
                         <div class="card-content">
-                            <p>Linux Luc Samenvatting</p>
+                            <p>For all your Sysprog nightmares</p>
                         </div>
                     </div>
                 </div>
                 <div class="col m4">
-                    <div class="card teal lighten-2">
+                    <div class="card teal lighten-3">
                         <div class="card-image">
                             <img src="<c:url value="${initParam.inventoryImagePath}lucgeurts.png" />">
                             <span class="card-title strokeme">ESAT Luc</span>
                         </div>
                         <div class="card-content">
-                            <p>ESAT Luc Samenvatting</p>
+                            <p>From basic electronics to motors</p>
                         </div>
                     </div>
                 </div>
                 <div class="col m4">
-                    <div class="card teal lighten-2">
+                    <div class="card teal lighten-3">
                         <div class="card-image">
                             <img src="<c:url value="${initParam.inventoryImagePath}lucjanssens.png" />">
                             <span class="card-title strokeme">Sensor Luc</span>
                         </div>
                         <div class="card-content">
-                            <p>Sensor Luc Samenvatting</p>
+                            <p>The EM/EA crossbreed professor</p>
                         </div>
                     </div>
                 </div>
                 <div class="col m4">
-                    <div class="card teal lighten-2">
+                    <div class="card teal lighten-3">
                         <div class="card-image">
                             <img src="<c:url value="${initParam.inventoryImagePath}lucbienstman.png" />">
                             <span class="card-title strokeme">Processor Luc</span>
                         </div>
                         <div class="card-content">
-                            <p>Processor Luc Samenvatting</p>
+                            <p>Your PIC18f45 compatible Luc</p>
                         </div>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="col m3 center">
-                <div class="card teal z-depth-3">
+                <div class="card teal lighten-3 right-margin">
                     <div class="card-content black-text">
                         <h5>Ranking</h5>
                         <table class="table-font">
