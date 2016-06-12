@@ -35,8 +35,8 @@ import java.util.Map;
 
 public class MainController {
 
-    UserManager userManager = lookupUserManagerBean();
-
+    UserManager userManager = lookupUserManagerBean();       
+    
     UserFacade userFacade = lookupUserFacadeBean();
     
     protected final Log logger = LogFactory.getLog(getClass()); 
@@ -45,7 +45,8 @@ public class MainController {
     public ModelAndView main(HttpServletRequest request, HttpServletResponse response){
         logger.info("MainController GET main method");
         HttpSession session = request.getSession(false);
-        User user = (User) session.getAttribute("user");
+        User temp = (User) session.getAttribute("user");
+        User user = (User) userFacade.getUser(temp.getId());
         logger.info(user);
         ModelAndView model = new ModelAndView("mainPage");
         List<User> ranking = userFacade.getRanking();
