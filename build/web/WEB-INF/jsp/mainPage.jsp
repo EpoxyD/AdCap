@@ -23,7 +23,13 @@
             </tr>
             <c:forEach var="user" items="${ranking}">
                 <tr>
-                    <td><c:out value="${user.getUsername()}" /></td>
+                    <td>
+                        <a href=./user/<c:out value="${user.getId()}" />>
+                            <div style="height:100%;width:100%">
+                               <c:out value="${user.getUsername()}" />
+                            </div>
+                        </a>
+                    </td>
                     <td><c:out value="${user.getMoney()}" /></td>
                 </tr>
             </c:forEach>

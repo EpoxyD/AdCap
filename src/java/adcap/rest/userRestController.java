@@ -56,14 +56,15 @@ public class userRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     } 
     
-    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> getUser(@PathVariable("id") int id) {
+    @RequestMapping(value = "/searchUser/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
+    public ResponseEntity<User> getNumberOfUsers(@PathVariable("id") int id) {
         logger.info("Fetching User with id " + id);
         User user = userFacade.getUser(id);
         if (user == null) {
             logger.info("User with id " + id + " not found");
-            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        user.setPassword("SECURITYBLOCK");
         logger.info("User succesfully found " + id);
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
