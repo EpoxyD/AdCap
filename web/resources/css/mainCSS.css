@@ -8,6 +8,10 @@ and open the template in the editor.
     Author     : Evert
 */
 
+.circle{
+    border: solid 1px black;
+}
+
 .header-name{
     margin: 0;
     margin-right: 30px;
@@ -33,6 +37,7 @@ footer{
 }
 
 .full-width{
+    display: block;
     width: 100%;
 }
 
@@ -42,6 +47,19 @@ header, main, footer {
 
 #inline{
     display: inline;
+}
+
+.loginscreen{
+    margin: auto;
+    margin-top: 30px;
+    width: 300px; 
+    border: 1px lightgray solid;
+    border-radius: 5px;
+    background-color: rgba(256,256,256,0.5);
+}
+
+.loginbackground {
+    padding-left: 0px !important;
 }
 
 main {
@@ -67,10 +85,6 @@ main {
     width: 100px;
 }
 
-.circle{
-    border: solid 1px black;
-}
-
 .profile{
     background-image: url("../img/defaultbackground.jpg");
     background-size: cover;
@@ -86,12 +100,12 @@ main {
 .strokeme
 {
     text-shadow:
-        -2px -2px 0 #212121,
-        2px -2px 0 #212121,
-        -2px 2px 0 #212121,
-        2px 2px 0 #212121;
+        -1px -1px 0 #212121,
+        1px -1px 0 #212121,
+        -1px 1px 0 #212121,
+        1px 1px 0 #212121;
     text-align: left;
-    line-height: 100px;
+    line-height: 20px;
     font-size: 40px;
 
     -webkit-touch-callout: none;
@@ -100,6 +114,10 @@ main {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.table-font{
+    font-size: 10px;
 }
 
 .no-margin{

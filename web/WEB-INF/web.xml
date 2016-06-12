@@ -40,6 +40,11 @@
             <include-prelude>/WEB-INF/jspf/header.jspf</include-prelude>
             <include-coda>/WEB-INF/jspf/footer.jspf</include-coda>
         </jsp-property-group>
+        <jsp-property-group>
+            <description>Add footer to login		</description>
+            <url-pattern>/WEB-INF/jsp/login.jsp</url-pattern>
+            <include-coda>/WEB-INF/jspf/footer.jspf</include-coda>
+        </jsp-property-group>
     </jsp-config>
     <resource-ref>
         <res-ref-name>jdbc/adcap</res-ref-name>

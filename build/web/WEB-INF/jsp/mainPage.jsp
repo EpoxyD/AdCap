@@ -5,16 +5,16 @@
 --%>
 
 
-<main>
+<main class="maingame">
     <div class="container-fluid" style="height: 100%; width: 100%;">
         <div class="row">
-            <div class="col m8">
-                <h1>Inventory</h1>
+            <div class="col m9 center">
+                <h4>Inventory</h4>
                 <div class="col m4">
                     <div class="card teal lighten-2">
                         <div class="card-image">
                             <img src="<c:url value="${initParam.inventoryImagePath}lucvandeurzen.png" />">
-                            <span class="card-title">Linux Luc</span>
+                            <span class="card-title strokeme">Linux Luc</span>
                         </div>
                         <div class="card-content">
                             <p>Linux Luc Samenvatting</p>
@@ -25,7 +25,7 @@
                     <div class="card teal lighten-2">
                         <div class="card-image">
                             <img src="<c:url value="${initParam.inventoryImagePath}lucgeurts.png" />">
-                            <span class="card-title">ESAT Luc</span>
+                            <span class="card-title strokeme">ESAT Luc</span>
                         </div>
                         <div class="card-content">
                             <p>ESAT Luc Samenvatting</p>
@@ -36,7 +36,7 @@
                     <div class="card teal lighten-2">
                         <div class="card-image">
                             <img src="<c:url value="${initParam.inventoryImagePath}lucjanssens.png" />">
-                            <span class="card-title">Sensor Luc</span>
+                            <span class="card-title strokeme">Sensor Luc</span>
                         </div>
                         <div class="card-content">
                             <p>Sensor Luc Samenvatting</p>
@@ -47,7 +47,7 @@
                     <div class="card teal lighten-2">
                         <div class="card-image">
                             <img src="<c:url value="${initParam.inventoryImagePath}lucbienstman.png" />">
-                            <span class="card-title">Processor Luc</span>
+                            <span class="card-title strokeme">Processor Luc</span>
                         </div>
                         <div class="card-content">
                             <p>Processor Luc Samenvatting</p>
@@ -58,11 +58,11 @@
                     <a href="shop" class="waves-effect waves-light btn-large full-width">Get some more Luc's at the STORE</a>
                 </div>
             </div>
-            <div class="col m4">
+            <div class="col m3 center">
                 <div class="card teal z-depth-3">
                     <div class="card-content black-text">
-                        <h4>Ranking</h4>
-                        <table>
+                        <h5>Ranking</h5>
+                        <table class="table-font">
                             <thead>
                                 <tr>
                                     <th data-field="username">Name</th>
@@ -85,36 +85,6 @@
                                     <td>Borgie</td>
                                     <td>&#8364 9642</td>
                                     <td>&#8364 623.65</td>
-                                </tr>
-                                <tr>
-                                    <td>----------</td>
-                                    <td>----------</td>
-                                    <td>----------</td>
-                                </tr>
-                                <tr>
-                                    <td>----------</td>
-                                    <td>----------</td>
-                                    <td>----------</td>
-                                </tr>
-                                <tr>
-                                    <td>----------</td>
-                                    <td>----------</td>
-                                    <td>----------</td>
-                                </tr>
-                                <tr>
-                                    <td>----------</td>
-                                    <td>----------</td>
-                                    <td>----------</td>
-                                </tr>
-                                <tr>
-                                    <td>----------</td>
-                                    <td>----------</td>
-                                    <td>----------</td>
-                                </tr>
-                                <tr>
-                                    <td>----------</td>
-                                    <td>----------</td>
-                                    <td>----------</td>
                                 </tr>
                             </tbody>
                         </table>
