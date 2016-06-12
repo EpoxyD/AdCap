@@ -1,13 +1,11 @@
-<footer class="page-footer light-green accent-4">
-    <div class="footer-copyright">
-        <div class="container center">
-            &copy 2016 Kakke, Woetie en Evert. All rights reserved.
-        </div>
+<footer class="light-green accent-4">
+    <div class="container center">
+        &copy 2016 Kakke, Woetie en Evert. All rights reserved.
     </div>
 </footer>
 
-        <!-- Scripts -->
-        <script type="text/javascript" src="<c:url value="https://code.jquery.com/jquery-2.1.1.min.js" />"</script>
-        <script type="text/javascript" src="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js" />"</script>
-    </body>
+<!-- Scripts -->
+<script type="text/javascript" src="<c:url value="https://code.jquery.com/jquery-2.1.1.min.js" />"</script>
+<script type="text/javascript" src="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js" />"</script>
+</body>
 </html>

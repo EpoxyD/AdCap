@@ -10,12 +10,14 @@
         <link rel="stylesheet" href="<c:url value="http://fonts.googleapis.com/icon?family=Material+Icons" />" />
         <title>Main page</title>
     </head>
-    <body>
+    <body class="light-green accent-2">
     <nav class="light-green accent-4">
-        <div class="nav-wrapper container">
-            <p class="left center">Welcome ${loggedInUser}</p>
-            <div class="right">
-                <h4>test</h4>
-            </div>
+        <div class="nav-wrapper">
+            <ul id="nav-mobile" class="left">
+                <li><a href="#">Main</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+            <p class="right header-name">Welcome ${loggedInUser}</p>
         </div>
     </nav>
