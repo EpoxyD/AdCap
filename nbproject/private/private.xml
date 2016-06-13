@@ -7,10 +7,16 @@
             <file>file:/C:/Users/Karsten/Documents/Git/AdCap/src/java/adcap/rest/userRestController.java</file>
             <file>file:/C:/Users/Karsten/Documents/Git/AdCap/src/java/adcap/web/MainController.java</file>
             <file>file:/C:/Users/Karsten/Documents/Git/AdCap/web/WEB-INF/web.xml</file>
+<<<<<<< HEAD
             <file>file:/C:/Users/Karsten/Documents/Git/AdCap/src/java/adcap/web/CartController.java</file>
             <file>file:/C:/Users/Karsten/Documents/Git/AdCap/web/WEB-INF/AdventureCapitalist-servlet.xml</file>
             <file>file:/C:/Users/Karsten/Documents/Git/AdCap/web/WEB-INF/jsp/include.jsp</file>
             <file>file:/C:/Users/Karsten/Documents/Git/AdCap/web/WEB-INF/jsp/userView.jsp</file>
+=======
+            <file>file:/C:/Users/Karsten/Documents/Git/AdCap/web/WEB-INF/AdventureCapitalist-servlet.xml</file>
+            <file>file:/C:/Users/Karsten/Documents/Git/AdCap/web/WEB-INF/jsp/lucView.jsp</file>
+            <file>file:/C:/Users/Karsten/Documents/Git/AdCap/web/WEB-INF/jsp/include.jsp</file>
+>>>>>>> SOAPServiceKarsten
             <file>file:/C:/Users/Karsten/Documents/Git/AdCap/web/WEB-INF/jsp/mainPage.jsp</file>
         </group>
     </open-files>
