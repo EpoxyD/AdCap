@@ -81,18 +81,7 @@ public class MainController {
         logger.info(userDetails.toString());
         return model;
     }     
-
-    
-    //XML Based REST Client
-    @RequestMapping(value="/luc/", method=RequestMethod.GET)
-    public ModelAndView viewLuc(HttpServletRequest request, HttpServletResponse response){
-        logger.info("MainController GET Luc method");
-        ModelAndView model = new ModelAndView("lucView");
-
-
-
-        return model;
-    }     
+ 
     
     private UserFacade lookupUserFacadeBean() {
         try {

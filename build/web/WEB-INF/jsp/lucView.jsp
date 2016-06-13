@@ -12,18 +12,25 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <h1>${json}</h1>
-        <div id="show" align="center"></div>
-        <script type="text/javascript"
-    src="http://code.jquery.com/jquery-1.10.1.min.js"></script>  
-            <script>
-
-    $(document).ready(function() {
-         
-         $('#show').text(json.toString()); 
-
-        });
-</script>
+        <h1>Overview for ${luc.getPreferredName()} ${luc.getSurname()}</h1>
+        <table border="1" cellpadding="5">
+            <caption><h2>Luc's private KULeuven REST information</h2></caption>
+            <tr>
+                <th>Nr</th>
+                <th>Gender</th>
+                <th>Surname</th>
+                <th>Name</th>
+                <th>Mail Adress</th>
+                <th>Faculty Affiliation</th>
+            </tr>
+                <tr>
+                    <td><c:out value="${luc.getNr()}" /></td> 
+                    <td><c:out value="${luc.getGender()}" /></td>
+                    <td><c:out value="${luc.getSurname()}" /></td> 
+                    <td><c:out value="${luc.getPreferredName()}" /></td> 
+                    <td><c:out value="${luc.getPreferredMailAdress()}" /></td> 
+                    <td><c:out value="${luc.getFacultyAffiliation()}" /></td> 
+                </tr>            
+        </table>
     </body>
 </html>
