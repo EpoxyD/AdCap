@@ -20,10 +20,11 @@
                 </div>
             </li>
             <li><center><h6 class="black-text">Welcome ${loggedInUser}</h6></center></li>
-            <li><a href="mainpage">Main</a></li>
+            <li><a href="mainPage">Main</a></li>
             <li><a href="shop">Shop</a></li>
             <li><a href="settings">Settings</a></li>
-            <li><a href="logout">Logout</a></li>
+            <li><a href="../logout">Logout</a></li>
+            <li><a id="money">Money: &#8364 <c:out value="${money}" /></a></li>
         </ul>
         <a href="#" data-activates="slide-out" class="button-collapse show-on-large">
             <i class="mdi-navigation-menu"></i>

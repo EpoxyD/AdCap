@@ -5,9 +5,9 @@
  */
 package adcap.web;
 
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.ModelAndView; 
 import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.commons.logging.LogFactory; 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
@@ -26,53 +26,20 @@ import javax.naming.NamingException;
 import javax.servlet.http.HttpSession;
 import org.springframework.web.client.RestTemplate;
 
+
+
 /**
  *
  * @author Karsten
  */
+
 @Controller
-public class LoginController {
+public class LoginController {        
 
-    UserFacade userFacade = lookupUserFacadeBean();
+        UserFacade userFacade = lookupUserFacadeBean();
 
-    protected final Log logger = LogFactory.getLog(getClass());
+        protected final Log logger = LogFactory.getLog(getClass()); 
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView displayLogin(HttpServletRequest request, HttpServletResponse response) {
-        ModelAndView model = new ModelAndView("login");
-        LoginBean loginBean = new LoginBean();
-        model.addObject("loginBean", loginBean);
-        logger.info("Logincontroller GET method");
-        return model;
-    }
-
-<<<<<<< HEAD
-    @RequestMapping(value = "/main/mainpage", method = RequestMethod.POST)
-    public ModelAndView executeLogin(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("loginBean") LoginBean loginBean) {
-        ModelAndView model = null;
-        try {
-            logger.info("Logincontroller POST method");
-            logger.info(loginBean.getUsername());
-            logger.info(loginBean.getPassword());
-            boolean isValidUser = userFacade.checkCredentials(loginBean.getUsername(), loginBean.getPassword());
-            if (isValidUser) {
-                logger.info("User Login Successful");
-                request.setAttribute("loggedInUser", loginBean.getUsername());
-                model = new ModelAndView("mainPage");
-            } else {
-                logger.info("User Login Failed");
-                model = new ModelAndView("login");
-                model.addObject("loginBean", loginBean);
-                request.setAttribute("message", "Invalid credentials!!");
-            }
-
-        } catch (Exception e) {
-            logger.info(e);
-        }
-
-        return model;
-    }
-=======
         
     	@RequestMapping(value="/",method=RequestMethod.GET)
 	public ModelAndView displayLogin(HttpServletRequest request, HttpServletResponse response)
@@ -82,9 +49,10 @@ public class LoginController {
                 if(request.getSession(false) != null && request.getSession(false).getAttribute("user") != null) //if there is a session and a user
                 {
                     logger.info("Logincontroller user found, redirecting to main");
-                    model.setViewName("redirect:main");
+                    model.setViewName("redirect:main/mainPage");
                     return model;
-                }		
+                }	
+                logger.info("Logincontroller user not found");
 		LoginBean loginBean = new LoginBean();
 		model.addObject("loginBean", loginBean);
 		return model;
@@ -96,7 +64,7 @@ public class LoginController {
 		ModelAndView model= null;
 		try
 		{
-                    logger.info("Logincontroller POST Logout Method");
+                    logger.info("Logincontroller POST Login Method");
                     logger.info(loginBean.getUsername());
                     logger.info(loginBean.getPassword());
                     User user = userFacade.checkCredentials(loginBean.getUsername(), loginBean.getPassword());
@@ -106,7 +74,7 @@ public class LoginController {
                                 HttpSession session = request.getSession();
                                 session.setAttribute("user", user);
 				model = new ModelAndView();
-                                model.setViewName("redirect:main");
+                                model.setViewName("redirect:main/mainPage");
 			}
 			else
 			{
@@ -124,7 +92,7 @@ public class LoginController {
 	}
         
         
-        @RequestMapping(value="/logout",method=RequestMethod.POST)
+        @RequestMapping(value="/logout",method=RequestMethod.GET)
 	public ModelAndView logOut(HttpServletRequest request, HttpServletResponse response)
 	{
                 logger.info("Logincontroller POST method Logout");
@@ -135,7 +103,6 @@ public class LoginController {
 		return model;
 	}
 
->>>>>>> master
 
     private UserFacade lookupUserFacadeBean() {
         try {

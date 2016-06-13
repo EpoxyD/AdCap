@@ -5,12 +5,7 @@
         <param-value>/WEB-INF/applicationContext.xml</param-value>
     </context-param>
     <context-param>
-        <description>Relative path to sidebar images</description>
-        <param-name>sidebarImagePath</param-name>
-        <param-value>/resources/img/sidebar/</param-value>
-    </context-param>
-    <context-param>
-        <description>Relative path to product images</description>
+        <description>Relative path to inventory images</description>
         <param-name>inventoryImagePath</param-name>
         <param-value>/resources/img/inventory/</param-value>
     </context-param>
@@ -18,6 +13,11 @@
         <description>Relative path to author images</description>
         <param-name>authorImagePath</param-name>
         <param-value>/resources/img/authors/</param-value>
+    </context-param>
+    <context-param>
+        <description>Relative path to sidebar images&gt;</description>
+        <param-name>sidebarImagePath</param-name>
+        <param-value>/resources/img/sidebar/</param-value>
     </context-param>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -38,15 +38,16 @@
     </session-config>
     <jsp-config>
         <jsp-property-group>
-            <description>Add Header and Footer</description>
+            <description>Add header and footer to main pages</description>
             <url-pattern>/WEB-INF/jsp/settings.jsp</url-pattern>
+            <url-pattern>/WEB-INF/jsp/userView.jsp</url-pattern>
             <url-pattern>/WEB-INF/jsp/mainPage.jsp</url-pattern>
             <url-pattern>/WEB-INF/jsp/shop.jsp</url-pattern>
             <include-prelude>/WEB-INF/jspf/header.jspf</include-prelude>
             <include-coda>/WEB-INF/jspf/footer.jspf</include-coda>
         </jsp-property-group>
         <jsp-property-group>
-            <description>Add footer to login		</description>
+            <description>Set footer to login page	</description>
             <url-pattern>/WEB-INF/jsp/login.jsp</url-pattern>
             <include-coda>/WEB-INF/jspf/footer.jspf</include-coda>
         </jsp-property-group>

@@ -17,15 +17,11 @@ import java.util.logging.Logger;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.servlet.http.HttpSession;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.util.UriComponentsBuilder;
 
 
 
@@ -40,7 +36,7 @@ public class userRestController {
     protected final Log logger = LogFactory.getLog(getClass()); 
    
     //This is called through AJAX, technically not a REST client
-    @RequestMapping(value = "/main/userMoney/{money}/id/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/main/mainPage/userMoney/{money}/id/{id}", method = RequestMethod.POST)
     public ResponseEntity<User> updateUserMoney(@PathVariable("money") int money, @PathVariable("id") int id) {
         logger.info("REST user monney is getting increased with "+money+". id is "+id);
          

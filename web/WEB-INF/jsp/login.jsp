@@ -1,4 +1,4 @@
-
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%-- 
     Document   : login
     Created on : 10-Jun-2016, 10:40:22
@@ -11,9 +11,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -27,7 +25,6 @@
         <sql:query var="result" dataSource="jdbc/adcap">
             SELECT * FROM user
         </sql:query>
-<<<<<<< HEAD
     <nav class="teal darken-4">
         <div class="nac-wrapper">
             <a class="brand-logo valign center">A Game Of Lucs</a>
@@ -38,7 +35,7 @@
             <div class="row">
                 <div class="col m12">
                     <div class="row">
-                        <form:form cssClass="col m12" id="loginForm" method="post" action="/AdCap/main/mainpage" modelAttribute="loginBean">
+                        <form:form cssClass="col m12" id="loginForm" method="post" action="/AdCap/login" modelAttribute="loginBean">
                             <div class="loginscreen center">
                                 <div class="container">
                                     <div class="row">
@@ -96,34 +93,3 @@
             </div>
         </div>
     </main>
-=======
-            <h1>HELLO</h1>
-        <table border="1">
-            <!-- column headers -->
-            <tr>
-                <c:forEach var="columnName" items="${result.columnNames}">
-                    <th><c:out value="${columnName}"/></th>
-                    </c:forEach>
-            </tr>
-            <!-- column data -->
-            <c:forEach var="row" items="${result.rowsByIndex}">
-                <tr>
-                    <c:forEach var="column" items="${row}">
-                        <td><c:out value="${column}"/></td>
-                    </c:forEach>
-                </tr>
-            </c:forEach>
-        </table>
-                
- 
-        <form:form id="loginForm" method="post" action="/AdCap/login" modelAttribute="loginBean">
-                <form:label path="username">Enter your user-name</form:label>
-                <form:input id="username" name="username" path="username" /><br>
-                <form:label path="username">Please enter your password</form:label>
-                <form:password id="password" name="password" path="password" /><br>
-                <input type="submit" value="Submit" />
-        </form:form>            
-            
-	</body>
-</html>
->>>>>>> master
