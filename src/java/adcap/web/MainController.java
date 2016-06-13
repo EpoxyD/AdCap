@@ -5,6 +5,7 @@
  */
 package adcap.web;
 
+import adcap.bean.LucBean;
 import adcap.entity.Item;
 import adcap.entity.User;
 import adcap.session.ItemFacade;
@@ -64,7 +65,7 @@ public class MainController {
 
     //XML Based REST Client
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ModelAndView main(HttpServletRequest request, HttpServletResponse response, @PathVariable("id") int id) {
+    public ModelAndView userView(HttpServletRequest request, HttpServletResponse response, @PathVariable("id") int id) {
         logger.info("MainController GET User method");
         ModelAndView model = new ModelAndView("userView");
         RestTemplate restTemplate = new RestTemplate();
@@ -75,6 +76,19 @@ public class MainController {
         logger.info(userDetails.toString());
         return model;
     }
+    
+        //XML Based REST Client
+    @RequestMapping(value = "/luc{id}", method = RequestMethod.GET)
+    public ModelAndView lucView(HttpServletRequest request, HttpServletResponse response, @PathVariable("id") String id) {
+        logger.info("MainController GET Luc method");
+        ModelAndView model = new ModelAndView("lucView");
+        RestTemplate restTemplate = new RestTemplate();
+        LucBean luc = restTemplate.getForObject("http://localhost:8080/AdCap/" + "/searchLuc/" + id, LucBean.class);
+        model.addObject("luc", luc);
+        return model;
+    }
+    
+    
 
     @RequestMapping(value = "/shop")
     public ModelAndView getShop(HttpServletRequest request, HttpServletResponse response) {

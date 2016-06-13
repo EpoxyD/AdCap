@@ -5,16 +5,18 @@
                 <h4>Inventory</h4>
                 <c:forEach var="itemInfo" items="${userDetails.itemInfo}" varStatus="loop">
                     <div class="col m4">
-                        <div class="card teal lighten-3">
-                            <div class="card-image">
-                                <img src="<c:url value="${initParam.inventoryImagePath}${itemInfo.getName()}.png" />">
-                                <span class="card-title strokeme">${itemInfo.getName()}</span>
+                        <a href="luc00066920">
+                            <div class="card teal lighten-3">
+                                <div class="card-image">
+                                    <img src="<c:url value="${initParam.inventoryImagePath}${itemInfo.getName()}.png" />">
+                                    <span class="card-title strokeme">${itemInfo.getName()}</span>
+                                </div>
+                                <div class="card-content">
+                                    <p>${itemInfo.getDescription()}</p>
+                                    <p>Amount: ${userDetails.ownedItems.get(loop.index).getQuantity()}</p>
+                                </div>
                             </div>
-                            <div class="card-content">
-                                <p>${itemInfo.getDescription()}</p>
-                                <p>Amount: ${userDetails.ownedItems.get(loop.index).getQuantity()}</p>
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 </c:forEach>
                 <div class="col m12">
