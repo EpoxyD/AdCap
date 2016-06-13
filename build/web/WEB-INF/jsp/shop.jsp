@@ -22,8 +22,14 @@
                                 <td>${inventory.getDescription()}</td>
                                 <td>${inventory.getStock()}</td>
                                 <td>&#8364 ${inventory.getRate()} / second</td>
-                                <td><input value="0" id="amount" type="number" class="validate" style="width: 50px;"></td>
-                                <td><a class="waves-effect waves-light btn">Add to Cart</a></td>
+                                <td>
+                                    <form action="<c:url value="/main/buy"/>" method="POST">
+                                        <input type="hidden" name="itemId" value="${inventory.getId()}">
+                                        <input value="0" name="quantity" id="amount" type="text" maxlength="2" size="2" x class="validate center" style="width: 50px; margin-right: 10px;">
+                                        <button class="btn waves-effect waves-light" type="submit" name="action">Add to Cart</button>
+                                    </form>
+                                </td>
+
                             </tr>
                         </c:forEach>
                     </tbody>

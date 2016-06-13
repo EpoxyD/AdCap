@@ -43,6 +43,7 @@
             <url-pattern>/WEB-INF/jsp/userView.jsp</url-pattern>
             <url-pattern>/WEB-INF/jsp/mainPage.jsp</url-pattern>
             <url-pattern>/WEB-INF/jsp/lucView.jsp</url-pattern>
+            <url-pattern>/WEB-INF/jsp/cart.jsp</url-pattern>
             <url-pattern>/WEB-INF/jsp/shop.jsp</url-pattern>
             <include-prelude>/WEB-INF/jspf/header.jspf</include-prelude>
             <include-coda>/WEB-INF/jspf/footer.jspf</include-coda>

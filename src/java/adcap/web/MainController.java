@@ -6,9 +6,11 @@
 package adcap.web;
 
 import adcap.bean.LucBean;
+import adcap.cart.ShoppingCart;
 import adcap.entity.Item;
 import adcap.entity.User;
 import adcap.session.ItemFacade;
+import adcap.session.OrderManager;
 import adcap.session.UserFacade;
 import org.springframework.web.servlet.ModelAndView;
 import org.apache.commons.logging.Log;
@@ -40,6 +42,7 @@ import org.springframework.web.client.RestTemplate;
 
 public class MainController {
 
+    OrderManager orderManager = lookupOrderManagerBean();
     UserManager userManager = lookupUserManagerBean();
     UserFacade userFacade = lookupUserFacadeBean();
     ItemFacade itemFacade = lookupItemFacadeBean();
@@ -60,6 +63,11 @@ public class MainController {
         model.addObject("userDetails", userDetails);
         return model;
     }
+    
+    @RequestMapping(value = "/cart", method = RequestMethod.GET)
+    public ModelAndView getCart(HttpServletRequest request, HttpServletResponse response){
+        return (new ModelAndView("cart"));
+    }
 
     //XML Based REST Client
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -74,8 +82,8 @@ public class MainController {
         logger.info(userDetails.toString());
         return model;
     }
-    
-        //XML Based REST Client
+
+    //XML Based REST Client
     @RequestMapping(value = "/luc{id}", method = RequestMethod.GET)
     public ModelAndView lucView(HttpServletRequest request, HttpServletResponse response, @PathVariable("id") String id) {
         logger.info("MainController GET Luc method");
@@ -85,8 +93,51 @@ public class MainController {
         model.addObject("luc", luc);
         return model;
     }
+
+    @RequestMapping(value = "/buy", method = RequestMethod.POST)
+    public ModelAndView buyStuff(HttpServletRequest request, HttpServletResponse response) {
+        ModelAndView model = null;
+        try {
+            HttpSession session = request.getSession(false);
+            ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+            String itemId = request.getParameter("itemId");
+            String quantity = request.getParameter("quantity");
+            logger.info(itemId);
+            logger.info(quantity);
+            int itemID = Integer.parseInt(itemId);
+            Item item = itemFacade.find(itemID);
+            
+            cart.update(item, quantity);
+            logger.info(item);
+            session.setAttribute("cart", cart);
+            logger.info("Items in cart: " + cart.getNumberOfItems());
+        } catch (Exception e) {
+            logger.info("buy failed with exception");
+            logger.info(e);
+            return model;
+        }
+        model = new ModelAndView();
+        model.setViewName("redirect:shop");
+        return model;
+    }
     
-    
+    @RequestMapping(value = "/checkout", method = RequestMethod.POST)
+    public ModelAndView checkout(HttpServletRequest request, HttpServletResponse response) {
+        ModelAndView model = null;
+        HttpSession session = request.getSession(false);
+        User user = (User) session.getAttribute("user");
+        ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+        int orderId;
+        orderId = orderManager.placeOrder(user.getId(), cart);
+        if (orderId == 0) {
+            logger.info("Buy failed");
+            model = new ModelAndView("redirect:shop");
+        } else {
+            logger.info("Buy Succeeded");
+            model = new ModelAndView("redirect:mainPage");
+        }
+        return model;
+    }
 
     @RequestMapping(value = "/shop")
     public ModelAndView getShop(HttpServletRequest request, HttpServletResponse response) {
@@ -136,6 +187,16 @@ public class MainController {
         try {
             Context c = new InitialContext();
             return (UserManager) c.lookup("java:global/Distr_AdvCap/UserManager!adcap.session.UserManager");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    private OrderManager lookupOrderManagerBean() {
+        try {
+            Context c = new InitialContext();
+            return (OrderManager) c.lookup("java:global/Distr_AdvCap/OrderManager!adcap.session.OrderManager");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);

@@ -6,12 +6,13 @@
 package adcap.cart;
 
 import adcap.entity.Item;
+import java.io.Serializable;
 
 /**
  *
  * @author wouter
  */
-public class ShoppingCartItem {
+public class ShoppingCartItem implements Serializable {
     Item item;
     short quantity;
     

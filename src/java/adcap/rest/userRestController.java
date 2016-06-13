@@ -46,7 +46,7 @@ public class userRestController {
     //This is called through AJAX, technically not a REST client
     @RequestMapping(value = "/main/mainPage/userMoney/{money}/id/{id}", method = RequestMethod.POST)
     public ResponseEntity<User> updateUserMoney(@PathVariable("money") int money, @PathVariable("id") int id) {
-        logger.info("REST user monney is getting increased with "+money+". id is "+id);
+        logger.info("REST user money is "+money+". id is "+id);
          
         User currentUser = userFacade.getUser(id);
          

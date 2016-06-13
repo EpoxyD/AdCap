@@ -6,16 +6,17 @@
 package adcap.cart;
 
 import adcap.entity.Item;
+import java.io.Serializable;
 import java.util.*;
 
 /**
  *
  * @author wouter
  */
-public class ShoppingCart {
+public class ShoppingCart implements Serializable {
     List<ShoppingCartItem> items;
     int numberOfItems;
-    double total;
+    int total;
 
     public ShoppingCart() {
         items = new ArrayList<>();
@@ -59,9 +60,12 @@ public class ShoppingCart {
         
         if(qty >= 0){
             
+            boolean found = false;
+            
             //ShoppingCartItem item = null;
             for(ShoppingCartItem scItem : items) {
-                if(scItem.getItem().getId() == item.getId()) {
+                if(Objects.equals(scItem.getItem().getId(), item.getId())) {
+                    found = true;
                     if(qty == 0) {
                         items.remove(scItem);
                     }
@@ -69,6 +73,11 @@ public class ShoppingCart {
                         scItem.setQuantity(qty);
                     }
                 }
+            }
+            if (!found){
+                ShoppingCartItem scItem = new ShoppingCartItem(item);
+                scItem.setQuantity(qty);
+                items.add(scItem);
             }
         }
     }
@@ -104,10 +113,10 @@ public class ShoppingCart {
      * 
      * @return the cost of everything in the cart as a double
      */
-    public double getTotal() {
+    public int getTotal() {
         total = 0;
          for(ShoppingCartItem scItem : items) { 
-            total = scItem.getTotal();
+            total = (int) scItem.getTotal();
         }
         return total;
     }

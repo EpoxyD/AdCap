@@ -23,6 +23,7 @@
             <li><a href="mainPage">Main</a></li>
             <li><a href="shop">Shop</a></li>
             <li><a href="settings">Settings</a></li>
+            <li><a href="cart">Cart</a></li>
             <li><a href="../logout">Logout</a></li>
             <li><a id="money">Money: &#8364 <c:out value="${money}" /></a></li>
         </ul>
