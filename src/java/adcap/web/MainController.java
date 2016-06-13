@@ -72,13 +72,8 @@ public class MainController {
     }
 
     //XML Based REST Client
-<<<<<<< HEAD
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ModelAndView main(HttpServletRequest request, HttpServletResponse response, @PathVariable("id") int id) {
-=======
-    @RequestMapping(value="/user/{id}", method=RequestMethod.GET)
-    public ModelAndView viewUser(HttpServletRequest request, HttpServletResponse response, @PathVariable("id") int id){
->>>>>>> origin/master
         logger.info("MainController GET User method");
         ModelAndView model = new ModelAndView("userView");
         RestTemplate restTemplate = new RestTemplate();
@@ -88,7 +83,6 @@ public class MainController {
         model.addObject("userDetails", userDetails);
         logger.info(userDetails.toString());
         return model;
-<<<<<<< HEAD
     }
 
     @RequestMapping(value = "/shop")
@@ -113,11 +107,6 @@ public class MainController {
         return model;
     }
 
-=======
-    }     
- 
-    
->>>>>>> origin/master
     private UserFacade lookupUserFacadeBean() {
         try {
             Context c = new InitialContext();

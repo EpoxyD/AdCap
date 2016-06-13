@@ -36,7 +36,6 @@
             30
         </session-timeout>
     </session-config>
-<<<<<<< HEAD
     <jsp-config>
         <jsp-property-group>
             <description>Add header and footer to main pages</description>
@@ -53,9 +52,6 @@
             <include-coda>/WEB-INF/jspf/footer.jspf</include-coda>
         </jsp-property-group>
     </jsp-config>
-=======
-   
->>>>>>> origin/master
     <resource-ref>
         <res-ref-name>jdbc/adcap</res-ref-name>
         <res-type>javax.sql.ConnectionPoolDataSource</res-type>
