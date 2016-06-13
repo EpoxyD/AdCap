@@ -6,10 +6,8 @@
 package adcap.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,18 +15,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Karsten
+ * @author Evert
  */
 @Entity
 @Table(name = "item")
@@ -41,7 +37,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Item.findByDescription", query = "SELECT i FROM Item i WHERE i.description = :description"),
     @NamedQuery(name = "Item.findByLastUpdate", query = "SELECT i FROM Item i WHERE i.lastUpdate = :lastUpdate"),
     @NamedQuery(name = "Item.findByStock", query = "SELECT i FROM Item i WHERE i.stock = :stock"),
-    @NamedQuery(name = "Item.findByRate", query = "SELECT i FROM Item i WHERE i.rate = :rate")})
+    @NamedQuery(name = "Item.findByRate", query = "SELECT i FROM Item i WHERE i.rate = :rate"),
+    @NamedQuery(name = "Item.findByLucId", query = "SELECT i FROM Item i WHERE i.lucId = :lucId")})
 public class Item implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -73,10 +70,11 @@ public class Item implements Serializable {
     private int stock;
     @Column(name = "rate")
     private Integer rate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
-    private Collection<OrderedItem> orderedItemCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
-    private Collection<UserHasItem> userHasItemCollection;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "lucId")
+    private String lucId;
 
     public Item() {
     }
@@ -85,12 +83,13 @@ public class Item implements Serializable {
         this.id = id;
     }
 
-    public Item(Integer id, String name, int price, Date lastUpdate, int stock) {
+    public Item(Integer id, String name, int price, Date lastUpdate, int stock, String lucId) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.lastUpdate = lastUpdate;
         this.stock = stock;
+        this.lucId = lucId;
     }
 
     public Integer getId() {
@@ -149,22 +148,12 @@ public class Item implements Serializable {
         this.rate = rate;
     }
 
-    @XmlTransient
-    public Collection<OrderedItem> getOrderedItemCollection() {
-        return orderedItemCollection;
+    public String getLucId() {
+        return lucId;
     }
 
-    public void setOrderedItemCollection(Collection<OrderedItem> orderedItemCollection) {
-        this.orderedItemCollection = orderedItemCollection;
-    }
-
-    @XmlTransient
-    public Collection<UserHasItem> getUserHasItemCollection() {
-        return userHasItemCollection;
-    }
-
-    public void setUserHasItemCollection(Collection<UserHasItem> userHasItemCollection) {
-        this.userHasItemCollection = userHasItemCollection;
+    public void setLucId(String lucId) {
+        this.lucId = lucId;
     }
 
     @Override

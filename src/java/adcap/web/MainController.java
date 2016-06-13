@@ -54,8 +54,6 @@ public class MainController {
         User user = (User) userFacade.getUser(temp.getId());
         logger.info(user);
         ModelAndView model = new ModelAndView("mainPage");
-        List<Item> inventory = itemFacade.getItemList();
-        model.addObject("itemlist", inventory);
         List<User> ranking = userFacade.getRanking();
         model.addObject("ranking", ranking);
         Map userDetails = userManager.getUserDetails(user);

@@ -5,7 +5,7 @@
                 <h4>Inventory</h4>
                 <c:forEach var="itemInfo" items="${userDetails.itemInfo}" varStatus="loop">
                     <div class="col m4">
-                        <a href="luc00066920">
+                        <a href="luc${itemInfo.getLucId()}">
                             <div class="card teal lighten-3">
                                 <div class="card-image">
                                     <img src="<c:url value="${initParam.inventoryImagePath}${itemInfo.getName()}.png" />">
