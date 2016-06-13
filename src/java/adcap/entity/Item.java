@@ -6,6 +6,7 @@
 package adcap.entity;
 
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -77,6 +78,9 @@ public class Item implements Serializable {
     private String lucId;
 
     public Item() {
+    }
+        public static class Comparators {
+        public static final Comparator<Item> STOCK = (Item o1, Item o2) -> Integer.compare(o1.getStock(), o2.getStock());
     }
 
     public Item(Integer id) {
