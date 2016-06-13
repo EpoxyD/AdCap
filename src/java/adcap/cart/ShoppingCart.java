@@ -6,16 +6,17 @@
 package adcap.cart;
 
 import adcap.entity.Item;
+import java.io.Serializable;
 import java.util.*;
 
 /**
  *
  * @author wouter
  */
-public class ShoppingCart {
+public class ShoppingCart implements Serializable{
     List<ShoppingCartItem> items;
     int numberOfItems;
-    double total;
+    int total;
 
     public ShoppingCart() {
         items = new ArrayList<>();
@@ -104,10 +105,10 @@ public class ShoppingCart {
      * 
      * @return the cost of everything in the cart as a double
      */
-    public double getTotal() {
+    public int getTotal() {
         total = 0;
          for(ShoppingCartItem scItem : items) { 
-            total = scItem.getTotal();
+            total = (int) scItem.getTotal();
         }
         return total;
     }
