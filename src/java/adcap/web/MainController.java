@@ -145,7 +145,6 @@ public class MainController {
         HttpSession session = request.getSession(false);
         User temp = (User) session.getAttribute("user");
         List<Item> inventory = itemFacade.getItemList();
-        itemFacade.incrementAllStock();
         int money = (int) userFacade.getUser(temp.getId()).getMoney();
         ModelAndView model = new ModelAndView("shop");
         model.addObject("inventory", inventory);
