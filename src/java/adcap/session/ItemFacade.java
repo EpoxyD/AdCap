@@ -6,6 +6,7 @@
 package adcap.session;
 
 import adcap.entity.Item;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -23,6 +24,12 @@ public class ItemFacade extends AbstractFacade<Item> {
     @Override
     protected EntityManager getEntityManager() {
         return em;
+    }
+    
+    public List<Item> getItemList()
+    { 
+        List<Item> list = (List<Item>) em.createNamedQuery("Item.findAll").getResultList();
+        return list;
     }
 
     public ItemFacade() {

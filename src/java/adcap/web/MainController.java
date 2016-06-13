@@ -93,8 +93,10 @@ public class MainController {
         logger.info("Go Shopping");
         HttpSession session = request.getSession(false);
         User temp = (User) session.getAttribute("user");
+        List<Item> inventory = itemFacade.getItemList();
         int money = (int) userFacade.getUser(temp.getId()).getMoney();
         ModelAndView model = new ModelAndView("shop");
+        model.addObject("inventory", inventory);
         model.addObject("money", money);
         return model;
     }
