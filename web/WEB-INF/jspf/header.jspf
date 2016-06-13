@@ -25,7 +25,8 @@
             <li><a href="settings">Settings</a></li>
             <li><a href="cart">Cart</a></li>
             <li><a href="../logout">Logout</a></li>
-            <li><a id="money">Money: &#8364 <c:out value="${money}" /></a></li>
+            <li><a id="money" style="text-decoration: none;">Money: &#8364 <c:out value="${money}" /></a></li>
+            <li><a  style="text-decoration: none;">User online: ${counter}</a></li>
         </ul>
         <a href="#" data-activates="slide-out" class="button-collapse show-on-large">
             <i class="mdi-navigation-menu"></i>

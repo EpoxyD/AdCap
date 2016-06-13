@@ -22,6 +22,11 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    <listener>
+        <description>Listens for a created and destroyed sessions
+        </description>
+        <listener-class>adcap.bean.UserCounterBean</listener-class>
+    </listener>
     <servlet>
         <servlet-name>AdventureCapitalist</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

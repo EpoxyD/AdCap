@@ -6,6 +6,7 @@
 package adcap.web;
 
 import adcap.bean.LucBean;
+import adcap.bean.UserCounterBean;
 import adcap.cart.ShoppingCart;
 import adcap.entity.Item;
 import adcap.entity.User;
@@ -46,7 +47,6 @@ public class MainController {
     UserManager userManager = lookupUserManagerBean();
     UserFacade userFacade = lookupUserFacadeBean();
     ItemFacade itemFacade = lookupItemFacadeBean();
-
     protected final Log logger = LogFactory.getLog(getClass());
 
     @RequestMapping(value = "/mainPage", method = RequestMethod.GET)
@@ -56,7 +56,9 @@ public class MainController {
         User temp = (User) session.getAttribute("user");
         User user = (User) userFacade.getUser(temp.getId());
         logger.info(user);
-        ModelAndView model = new ModelAndView("mainPage");
+        ModelAndView model = new ModelAndView("mainPage"); 
+        int counter = UserCounterBean.getCounter();
+        model.addObject("counter", counter);
         List<User> ranking = userFacade.getRanking();
         model.addObject("ranking", ranking);
         Map userDetails = userManager.getUserDetails(user);
@@ -66,7 +68,10 @@ public class MainController {
     
     @RequestMapping(value = "/cart", method = RequestMethod.GET)
     public ModelAndView getCart(HttpServletRequest request, HttpServletResponse response){
-        return (new ModelAndView("cart"));
+        ModelAndView model = new ModelAndView("cart"); 
+        int counter = UserCounterBean.getCounter();
+        model.addObject("counter", counter);
+        return model;
     }
 
     //XML Based REST Client
@@ -77,6 +82,8 @@ public class MainController {
         RestTemplate restTemplate = new RestTemplate();
         User user = restTemplate.getForObject("http://localhost:8080/AdCap" + "/searchUser/" + id, User.class);
         logger.info(user);
+        int counter = UserCounterBean.getCounter();
+        model.addObject("counter", counter);
         Map userDetails = userManager.getUserDetails(user);
         model.addObject("userDetails", userDetails);
         logger.info(userDetails.toString());
@@ -88,6 +95,8 @@ public class MainController {
     public ModelAndView lucView(HttpServletRequest request, HttpServletResponse response, @PathVariable("id") String id) {
         logger.info("MainController GET Luc method");
         ModelAndView model = new ModelAndView("lucView");
+        int counter = UserCounterBean.getCounter();
+        model.addObject("counter", counter);
         RestTemplate restTemplate = new RestTemplate();
         LucBean luc = restTemplate.getForObject("http://localhost:8080/AdCap/" + "/searchLuc/" + id, LucBean.class);
         model.addObject("luc", luc);
@@ -117,6 +126,8 @@ public class MainController {
             return model;
         }
         model = new ModelAndView();
+        int counter = UserCounterBean.getCounter();
+        model.addObject("counter", counter);
         model.setViewName("redirect:shop");
         return model;
     }
@@ -136,6 +147,8 @@ public class MainController {
             logger.info("Buy Succeeded");
             model = new ModelAndView("redirect:mainPage");
         }
+        int counter = UserCounterBean.getCounter();
+        model.addObject("counter", counter);
         return model;
     }
 
@@ -147,6 +160,8 @@ public class MainController {
         List<Item> inventory = itemFacade.getItemList();
         int money = (int) userFacade.getUser(temp.getId()).getMoney();
         ModelAndView model = new ModelAndView("shop");
+        int counter = UserCounterBean.getCounter();
+        model.addObject("counter", counter);
         model.addObject("inventory", inventory);
         model.addObject("money", money);
         return model;
@@ -159,6 +174,8 @@ public class MainController {
         User temp = (User) session.getAttribute("user");
         int money = (int) userFacade.getUser(temp.getId()).getMoney();
         ModelAndView model = new ModelAndView("settings");
+        int counter = UserCounterBean.getCounter();
+        model.addObject("counter", counter);
         model.addObject("money", money);
         return model;
     }
@@ -202,5 +219,4 @@ public class MainController {
             throw new RuntimeException(ne);
         }
     }
-
 }

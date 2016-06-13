@@ -28,6 +28,9 @@
     <nav class="teal darken-4">
         <div class="nac-wrapper">
             <a class="brand-logo valign center">A Game Of Lucs</a>
+            <ul>
+                <li class="right">Users Online: ${counter}</li>
+            </ul>
         </div>
     </nav>
     <main class="loginbackground">
