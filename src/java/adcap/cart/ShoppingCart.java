@@ -16,7 +16,7 @@ import java.util.*;
 public class ShoppingCart implements Serializable{
     List<ShoppingCartItem> items;
     int numberOfItems;
-    double total;
+    int total;
 
     public ShoppingCart() {
         items = new ArrayList<>();
@@ -105,10 +105,10 @@ public class ShoppingCart implements Serializable{
      * 
      * @return the cost of everything in the cart as a double
      */
-    public double getTotal() {
+    public int getTotal() {
         total = 0;
          for(ShoppingCartItem scItem : items) { 
-            total = scItem.getTotal();
+            total = (int) scItem.getTotal();
         }
         return total;
     }

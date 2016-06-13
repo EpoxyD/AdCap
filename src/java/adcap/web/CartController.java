@@ -9,6 +9,7 @@ import adcap.cart.ShoppingCart;
 import adcap.entity.Item;
 import adcap.entity.User;
 import adcap.session.ItemFacade;
+import adcap.session.OrderManager;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;
@@ -31,6 +32,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class CartController {
 
+    OrderManager orderManager = lookupOrderManagerBean();
     ItemFacade itemFacade = lookupItemFacadeBean();
     protected final Log logger = LogFactory.getLog(getClass());
 
@@ -38,18 +40,6 @@ public class CartController {
     public ModelAndView showCheckout(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView model = null;        
         try {
-            HttpSession session = request.getSession(false);
-            if(session==null)logger.info("doofus ge hed gn session");
-
-            ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-            if(cart == null) logger.info("doofus ge krijgt uw cart nie");
-            
-            Item item = itemFacade.find(1);
-            if(item == null) logger.info("ey dumbass, haalt ne keer uwe item tegoei binnen");
-           
-            cart.addItem(item);
-            
-            session.setAttribute("cart", cart);
 
 
         } catch (Exception e) {
@@ -67,7 +57,8 @@ public class CartController {
     }
 
     @RequestMapping(value = "/main/addToCart", method = RequestMethod.POST)
-    public ModelAndView addToCart(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView addToCart(HttpServletRequest request, HttpServletResponse response) 
+    {
         ModelAndView model = null;
         logger.info("addtocart called");
         
@@ -91,11 +82,23 @@ public class CartController {
             logger.info("caught execption:");
             logger.info(e);
         }
-        model = new ModelAndView("checkout");
+        model = new ModelAndView("redirect:checkout");
         return model;
     }
     
-    
+    @RequestMapping(value="/main/checkout", method = RequestMethod.POST)
+    public ModelAndView checkout(HttpServletRequest request, HttpServletResponse response)
+    {
+        ModelAndView model = null;
+        
+        HttpSession session = request.getSession(false);
+        User user = (User) session.getAttribute("user");
+        ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+        
+        int orderId = orderManager.placeOrder(user.getId(), cart);
+        model = new ModelAndView("confirmation");
+        return model;
+    }        
     
     
     
@@ -107,6 +110,16 @@ public class CartController {
         try {
             Context c = new InitialContext();
             return (ItemFacade) c.lookup("java:global/Distr_AdvCap/ItemFacade!adcap.session.ItemFacade");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    private OrderManager lookupOrderManagerBean() {
+        try {
+            Context c = new InitialContext();
+            return (OrderManager) c.lookup("java:global/Distr_AdvCap/OrderManager!adcap.session.OrderManager");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);

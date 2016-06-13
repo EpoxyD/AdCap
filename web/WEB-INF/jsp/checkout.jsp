@@ -49,5 +49,10 @@
     <form action="<c:url value="/main/addToCart" />" method="POST">
         <input type="submit" name="action" value="add" />
     </form>
+        
+    <form action="<c:url value="/main/checkout" />" method="POST">
+        <input type="submit" name="action" value="checkout" />
+    </form>    
+    
     </body>
 </html>
