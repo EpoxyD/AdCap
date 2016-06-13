@@ -10,7 +10,6 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 /**
  *
@@ -27,17 +26,52 @@ public class UserFacade extends AbstractFacade<User> {
         return em;
     }
         
-    public boolean checkCredentials(String userName, String password)
-    {
-        Query q = em.createQuery("SELECT u FROM User U WHERE u.username = :userName AND u.password = :password");
-        q.setParameter("userName", userName);
-        q.setParameter("password", password);
-        List<User> list = q.getResultList();
-        if(list.size()==1)
+    public User checkCredentials(String userName, String password)
+    { 
+        List<User> list = em.createNamedQuery("User.checkLogin").setParameter("userName", userName).setParameter("password", password).getResultList();
+        if(!list.isEmpty())
         {
-            return true;
+          return list.get(0);
         }
-        return false;
+        return null;
+    }
+    
+    public boolean checkUserExists(String userName)
+    { 
+        List<User> list = em.createNamedQuery("User.findByUsername").setParameter("username", userName).getResultList();
+        return !list.isEmpty();
+    }
+    
+    public List<User> getRanking()
+    { 
+        List<User> list = (List<User>) em.createNamedQuery("User.sortByMoney").setMaxResults(5).getResultList();
+        return list;
+    }
+    
+    public User getUser(int id)
+    { 
+        List<User> list = (List<User>) em.createNamedQuery("User.findById").setParameter("id", id).getResultList();
+        if(!list.isEmpty())
+        {
+          return list.get(0);
+        }
+        return null;
+    }
+    
+    public void updateUserMoney(User user)
+    { 
+        List<User> list = (List<User>) em.createNamedQuery("User.findById").setParameter("id",user.getId()).getResultList();
+        if(!list.isEmpty())
+        {
+          list.get(0).setMoney(user.getMoney());
+        }
+    }
+    
+    public void saveUser(User user)
+    {
+        em.getTransaction().begin();
+        em.persist(user);
+        em.getTransaction().commit();
     }
 
     public UserFacade() {

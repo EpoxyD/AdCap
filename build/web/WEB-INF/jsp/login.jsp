@@ -27,6 +27,7 @@
         <sql:query var="result" dataSource="jdbc/adcap">
             SELECT * FROM user
         </sql:query>
+<<<<<<< HEAD
     <nav class="teal darken-4">
         <div class="nac-wrapper">
             <a class="brand-logo valign center">A Game Of Lucs</a>
@@ -95,3 +96,34 @@
             </div>
         </div>
     </main>
+=======
+            <h1>HELLO</h1>
+        <table border="1">
+            <!-- column headers -->
+            <tr>
+                <c:forEach var="columnName" items="${result.columnNames}">
+                    <th><c:out value="${columnName}"/></th>
+                    </c:forEach>
+            </tr>
+            <!-- column data -->
+            <c:forEach var="row" items="${result.rowsByIndex}">
+                <tr>
+                    <c:forEach var="column" items="${row}">
+                        <td><c:out value="${column}"/></td>
+                    </c:forEach>
+                </tr>
+            </c:forEach>
+        </table>
+                
+ 
+        <form:form id="loginForm" method="post" action="/AdCap/login" modelAttribute="loginBean">
+                <form:label path="username">Enter your user-name</form:label>
+                <form:input id="username" name="username" path="username" /><br>
+                <form:label path="username">Please enter your password</form:label>
+                <form:password id="password" name="password" path="password" /><br>
+                <input type="submit" value="Submit" />
+        </form:form>            
+            
+	</body>
+</html>
+>>>>>>> master

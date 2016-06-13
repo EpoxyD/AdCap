@@ -6,6 +6,7 @@
 package adcap.session;
 
 import adcap.entity.UserHasItem;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +28,10 @@ public class UserHasItemFacade extends AbstractFacade<UserHasItem> {
 
     public UserHasItemFacade() {
         super(UserHasItem.class);
+    }
+    
+    public List<UserHasItem> findByUserId(int id) {
+        return em.createNamedQuery("UserHasItem.findByUserId").setParameter("userId", id).getResultList();
     }
     
 }
