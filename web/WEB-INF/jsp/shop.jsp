@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col m12">
-                <table>
+                <table class="highlight centered responsive-table">
                     <thead>
                         <tr>
                             <th></th>

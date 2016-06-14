@@ -5,7 +5,7 @@
                 <h4>Inventory</h4>
                 <c:forEach var="itemInfo" items="${userDetails.itemInfo}" varStatus="loop">
                     <div class="col m4">
-                        <a href="luc${itemInfo.getLucId()}">
+                        <a class="white-text" href="luc${itemInfo.getLucId()}">
                             <div class="card teal lighten-3">
                                 <div class="card-image">
                                     <img src="<c:url value="${initParam.inventoryImagePath}${itemInfo.getName()}.png" />">
@@ -13,7 +13,7 @@
                                 </div>
                                 <div class="card-content">
                                     <p>${itemInfo.getDescription()}</p>
-                                    <p>Amount: ${userDetails.ownedItems.get(loop.index).getQuantity()}</p>
+                                    <p>Currently ${userDetails.ownedItems.get(loop.index).getQuantity()} in your inventory!</p>
                                 </div>
                             </div>
                         </a>

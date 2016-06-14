@@ -9,24 +9,24 @@
         <link rel="stylesheet" href="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" />" type="text/css">
         <link rel="stylesheet" href="<c:url value="http://fonts.googleapis.com/icon?family=Material+Icons" />" />
         <link rel="stylesheet" href="<c:url value="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />">
-        <title>Main page</title>
+        <title>A GAME OF LUCS</title>
     </head>
     <body class="teal lighten-5">
     <nav class="teal darken-4">
+        <a class="brand-logo center">Welcome back, ${user.surname} ${user.name}</a>
         <ul  id="slide-out" class="side-nav fixed teal lighten-4">
             <li>
                 <div class="profile" style="background-image: url(<c:url value="${initParam.sidebarImagePath}background.jpg" />); ">
                     <img id="profilepicture" class="circle" src="<c:url value="${initParam.sidebarImagePath}profilepicture.png"/>">
                 </div>
             </li>
-            <li><center><h6 class="black-text">Welcome ${loggedInUser}</h6></center></li>
             <li><a href="mainPage">Main</a></li>
             <li><a href="shop">Shop</a></li>
-            <li><a href="settings">Settings</a></li>
             <li><a href="cart">Cart</a></li>
-            <li><a href="../logout">Logout</a></li>
+            <li><a href="settings">About</a></li>
             <li><a id="money" style="text-decoration: none;">Money: &#8364 <c:out value="${money}" /></a></li>
-            <li><a  style="text-decoration: none;">User online: ${counter}</a></li>
+            <li><a>User online: ${counter}</a></li>
+            <li><a href="../logout">Logout</a></li>
         </ul>
         <a href="#" data-activates="slide-out" class="button-collapse show-on-large">
             <i class="mdi-navigation-menu"></i>
