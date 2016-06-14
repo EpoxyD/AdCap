@@ -9,6 +9,8 @@ import javax.ejb.Singleton;
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  *
@@ -19,16 +21,17 @@ import javax.servlet.http.HttpSessionListener;
 public class UserCounterBean implements HttpSessionListener{
     
     private static int usercounter = 0;
+    protected final Log logger = LogFactory.getLog(getClass()); 
 
     @Override
     public void sessionCreated(HttpSessionEvent se) {
-        System.out.println("Add a user");
+        logger.info("Add a user");
         usercounter++;
     }
 
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {
-        System.out.println("Delete a user");
+        logger.info("Delete a user");
         usercounter--;
     }
     

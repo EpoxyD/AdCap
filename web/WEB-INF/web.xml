@@ -19,6 +19,11 @@
         <param-name>sidebarImagePath</param-name>
         <param-value>/resources/img/sidebar/</param-value>
     </context-param>
+    <context-param>
+        <description>Relative path to monkey image</description>
+        <param-name>monkeyImagePath</param-name>
+        <param-value>/resources/img/monkey/</param-value>
+    </context-param>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
