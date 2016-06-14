@@ -23,6 +23,7 @@
             <li><a href="mainPage">Main</a></li>
             <li><a href="shop">Shop</a></li>
             <li><a href="cart">Cart <span class="new badge">${cart.getNumberOfItems()}</span></a></li>
+            <li><a href="framework">MVC Framework</a></li>
             <li><a href="settings">About</a></li>
             <li><a id="money" style="text-decoration: none;">Money: &#8364 <c:out value="${money}" /></a></li>
             <li><a>User online: ${counter}</a></li>

@@ -163,6 +163,11 @@ public class MainController {
         session.setAttribute("cart", cart);
         return new ModelAndView("redirect:cart");
     }
+    
+    @RequestMapping(value = "/framework")
+    public ModelAndView framework(){
+        return new ModelAndView("MVC Framework");
+    }
 
     @RequestMapping(value = "/shop")
     public ModelAndView getShop(HttpServletRequest request, HttpServletResponse response) {

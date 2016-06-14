@@ -50,6 +50,7 @@
         <jsp-property-group>
             <description>Add header and footer to main pages</description>
             <url-pattern>/WEB-INF/jsp/settings.jsp</url-pattern>
+            <url-pattern>/WEB-INF/jsp/MVC Framework.jsp</url-pattern>
             <url-pattern>/WEB-INF/jsp/userView.jsp</url-pattern>
             <url-pattern>/WEB-INF/jsp/mainPage.jsp</url-pattern>
             <url-pattern>/WEB-INF/jsp/lucView.jsp</url-pattern>
