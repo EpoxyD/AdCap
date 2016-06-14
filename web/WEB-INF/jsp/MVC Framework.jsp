@@ -49,13 +49,16 @@
                 <p>In the core package there is a convertor SPI which can converts for example Strings to Integers. 
                     These conversions can be conditional and automatically called.
                 </p>
-                <h3>Server-side handling of
-                    user interface events</h3>
+                <h3>Server-side handling of user interface events</h3>
                 <p>
-                    
+                    For one, the user input can be routed to the controller depending on the forwarded URI in the action attribute. The user input can be passed through forms or REST calls.
                 </p>
                 <h3>Rendering</h3>
-                <p>...</p>
+                <p>
+                    Spring uses the View Template pattern to render the Web Pages. In this pattern, the JSP view is loaded with the internal
+                    placeholder variables. Once the page is loaded the variables are populated by the model data that was also passed by the Controller to the view
+                    in the constructer ModelAndView. The mapping from Controller to the wanted view is done by the ViewResolver.
+                </p>
                 <h3>I18N and L10N</h3>
                 <p>
                     Localization is the act of programming an application in a way so that it can be adapted to a different region/language without having to change the code. 
@@ -65,8 +68,13 @@
                     The language can then easily be changed by selecting another 'translation file'.
                 </p>
                 <h3>JavaScript integration</h3>
-                <p>...</p>
+                <p>
+                    This is the same as in a regular web project when in the view pages. On controller level however it is more difficult but it can be done by using
+                    a PrintWriter (from HttpServletResponse) with contentType as text/html. 
+                </p>
                 <h3> ...</h3>
+                
+                
                 <h2>Documentation</h2>
                 <h3>Kind of documentation, quality, up to date</h3>
                 <p>
@@ -105,13 +113,20 @@
                 </p>
                 <h3>Learning curve</h3>
                 <p>
-                    
+                    This has be put in a certain context. Due to the 7 thesis weeks in the beginning of the semester we were forced to learn Java EE in a very short timespan. The initial learning curve was very steep, 
+                    but short. It was hard to get into it, you couldn't build a single application without help. Any minor adjustment could fail the build.
+                    <br>
+                    Once over this initial learning curve, development was easier and adding functionality was done in rapid succession. The things we were cursing about in the beginning turned out to be extremely useful in the end.
+                    While at first we couldn't imagine that projects were developed like this, in the end we wished we'd known this technology in the course of web 2.0.
                 </p>
+                <img src="<c:url value="${initParam.monkeyImagePath}spring.png" />" >
                 <h2>Practical information</h2>
                 <h3>Website</h3>
                 <p><a href=https://spring.io/">https://spring.io/</a></p>
                 <h3>Download</h3>
-                <p>...</p>
+                <p>
+                    <a href="https://projects.spring.io/spring-framework/">https://projects.spring.io/spring-framework/</a>
+                </p>
             </div>
         </div>
     </div>
