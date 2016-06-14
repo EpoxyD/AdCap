@@ -18,6 +18,13 @@
         <property name="prefix" value="/WEB-INF/jsp/"></property>
         <property name="suffix" value=".jsp"></property>        
     </bean>
+    
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/main/buy"/>
+            <bean class="adcap.bean.InterceptorBean" />
+        </mvc:interceptor>
+    </mvc:interceptors> 
 
     <mvc:annotation-driven />
     
