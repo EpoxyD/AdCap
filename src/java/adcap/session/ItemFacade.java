@@ -24,16 +24,15 @@ public class ItemFacade extends AbstractFacade<Item> {
 
     @PersistenceContext(unitName = "Distr_AdvCapPU")
     private EntityManager em;
-    
-    protected final Log logger = LogFactory.getLog(getClass()); 
+
+    protected final Log logger = LogFactory.getLog(getClass());
 
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
-    
-    public List<Item> getItemList()
-    { 
+
+    public List<Item> getItemList() {
         List<Item> list = (List<Item>) em.createNamedQuery("Item.findAll").getResultList();
         return list;
     }
@@ -41,28 +40,30 @@ public class ItemFacade extends AbstractFacade<Item> {
     public ItemFacade() {
         super(Item.class);
     }
-    
-    public void incrementAllStock()
-    {
+
+    public void incrementAllStock() {
         logger.info("The stock is being updated!!!");
         List<Item> items = getItemList();
-        Collections.sort(items,Item.Comparators.STOCK); //order from low to high LAMBDA!!!
-        int half = items.size()/2;
+        Collections.sort(items, Item.Comparators.STOCK); //order from low to high LAMBDA!!!
+        int half = items.size() / 2;
         int counter = 0;
         items.stream().forEach((item) -> {
-            if(counter <=half)
-            {
-                item.setStock(20+item.getStock()*4);
-                item.setRate(5+item.getRate()/2);
-            }
-            else
-            {
-                item.setStock(20+item.getStock()*2);
-                item.setRate(item.getRate()*2);                
+            if (counter <= half) {
+                item.setStock(20 + item.getStock() * 4);
+                item.setRate(5 + item.getRate() / 2);
+            } else {
+                item.setStock(20 + item.getStock() * 2);
+                item.setRate(item.getRate() * 2);
             }
         });
     }
-    
 
-    
+    public Item findItemOnLucId(String lucId) {
+        List<Item> list = em.createNamedQuery("Item.findByLucId").setParameter("lucId", lucId).getResultList();
+        if (!list.isEmpty()) {
+            return list.get(0);
+        }
+        return null;
+    }
+
 }

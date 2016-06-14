@@ -40,6 +40,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Item.findByStock", query = "SELECT i FROM Item i WHERE i.stock = :stock"),
     @NamedQuery(name = "Item.findByRate", query = "SELECT i FROM Item i WHERE i.rate = :rate"),
     @NamedQuery(name = "Item.findByLucId", query = "SELECT i FROM Item i WHERE i.lucId = :lucId")})
+
 public class Item implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -79,7 +80,9 @@ public class Item implements Serializable {
 
     public Item() {
     }
-        public static class Comparators {
+
+    public static class Comparators {
+
         public static final Comparator<Item> STOCK = (Item o1, Item o2) -> Integer.compare(o1.getStock(), o2.getStock());
     }
 
@@ -184,5 +187,5 @@ public class Item implements Serializable {
     public String toString() {
         return "adcap.entity.Item[ id=" + id + " ]";
     }
-    
+
 }
