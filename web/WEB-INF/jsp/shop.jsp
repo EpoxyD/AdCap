@@ -29,11 +29,13 @@
                                         <button class="btn waves-effect waves-light" type="submit" name="action">Add to Cart</button>
                                     </form>
                                 </td>
-
                             </tr>
                         </c:forEach>
                     </tbody>
                 </table>
+            </div>
+            <div class="col m12">
+                <center><a href="cart" class="waves-effect waves-light btn-large cart-button">View shopping Cart</a></center>
             </div>
         </div>
     </div>

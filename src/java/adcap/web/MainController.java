@@ -69,6 +69,8 @@ public class MainController {
     @RequestMapping(value = "/cart", method = RequestMethod.GET)
     public ModelAndView getCart(HttpServletRequest request, HttpServletResponse response){
         ModelAndView model = new ModelAndView("cart"); 
+        User temp = (User) request.getSession(false).getAttribute("user");
+        model.addObject("money", (int) userFacade.getUser(temp.getId()).getMoney());
         int counter = UserCounterBean.getCounter();
         model.addObject("counter", counter);
         return model;
@@ -83,6 +85,8 @@ public class MainController {
         User user = restTemplate.getForObject("http://localhost:8080/AdCap" + "/searchUser/" + id, User.class);
         logger.info(user);
         int counter = UserCounterBean.getCounter();
+        User temp = (User) request.getSession(false).getAttribute("user");
+        model.addObject("money", (int) userFacade.getUser(temp.getId()).getMoney());
         model.addObject("counter", counter);
         Map userDetails = userManager.getUserDetails(user);
         model.addObject("userDetails", userDetails);
@@ -97,6 +101,8 @@ public class MainController {
         ModelAndView model = new ModelAndView("lucView");
         int counter = UserCounterBean.getCounter();
         model.addObject("counter", counter);
+        User temp = (User) request.getSession(false).getAttribute("user");
+        model.addObject("money", (int) userFacade.getUser(temp.getId()).getMoney());
         RestTemplate restTemplate = new RestTemplate();
         LucBean luc = restTemplate.getForObject("http://localhost:8080/AdCap/" + "/searchLuc/" + id, LucBean.class);
         model.addObject("luc", luc);
@@ -126,8 +132,6 @@ public class MainController {
             return model;
         }
         model = new ModelAndView();
-        int counter = UserCounterBean.getCounter();
-        model.addObject("counter", counter);
         model.setViewName("redirect:shop");
         return model;
     }
@@ -147,23 +151,30 @@ public class MainController {
             logger.info("Buy Succeeded");
             model = new ModelAndView("redirect:mainPage");
         }
-        int counter = UserCounterBean.getCounter();
-        model.addObject("counter", counter);
         return model;
+    }
+    
+    @RequestMapping(value = "/clear", method = RequestMethod.POST)
+    public ModelAndView clear(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession(false);
+        User user = (User) session.getAttribute("user");
+        ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+        cart.clear();
+        session.setAttribute("cart", cart);
+        return new ModelAndView("redirect:cart");
     }
 
     @RequestMapping(value = "/shop")
     public ModelAndView getShop(HttpServletRequest request, HttpServletResponse response) {
         logger.info("Go Shopping");
         HttpSession session = request.getSession(false);
-        User temp = (User) session.getAttribute("user");
         List<Item> inventory = itemFacade.getItemList();
-        int money = (int) userFacade.getUser(temp.getId()).getMoney();
         ModelAndView model = new ModelAndView("shop");
         int counter = UserCounterBean.getCounter();
         model.addObject("counter", counter);
         model.addObject("inventory", inventory);
-        model.addObject("money", money);
+        User temp = (User) session.getAttribute("user");
+        model.addObject("money", (int) userFacade.getUser(temp.getId()).getMoney());
         return model;
     }
 

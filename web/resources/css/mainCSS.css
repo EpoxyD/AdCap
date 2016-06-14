@@ -23,6 +23,11 @@ and open the template in the editor.
     margin:5px;
 }
 
+.cart-button{
+    margin: 50px;
+    width: 400px;
+}
+
 .circle{
     border: solid 1px black;
 }

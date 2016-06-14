@@ -26,12 +26,19 @@
 
                 <c:if test="${!empty cart && car.numberOfItems != 0}">
                     <p> amount of items in cart: ${cart.numberOfItems}</p>
-                </c:if>    
+                </c:if>   
 
-                <form action="<c:url value="/main/checkout" />" method="POST">
-                    <!--        <input type="submit" name="action" value="checkout" />-->
-                    <button class="btn waves-effect waves-light full-width" type="submit" name="action" value="checkout">GO!</button>
-                </form>
+                <div class="col m6">
+                    <form action="<c:url value="/main/clear" />" method="POST">
+                        <button class="btn waves-effect waves-light full-width" type="submit" name="action" value="checkout">Clear Cart</button>
+                    </form>
+                </div>
+
+                <div class="col m6">
+                    <form action="<c:url value="/main/checkout" />" method="POST">
+                        <button class="btn waves-effect waves-light full-width" type="submit" name="action" value="checkout">Buy my LUC's!</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
