@@ -47,15 +47,17 @@ public class ItemFacade extends AbstractFacade<Item> {
         Collections.sort(items, Item.Comparators.STOCK); //order from low to high LAMBDA!!!
         int half = items.size() / 2;
         int counter = 0;
-        items.stream().forEach((item) -> {
-            if (counter <= half) {
+        for(Item item: items)
+        {
+            if (counter < half) {
                 item.setStock(20 + item.getStock() * 4);
                 item.setRate(5 + item.getRate() / 2);
             } else {
                 item.setStock(20 + item.getStock() * 2);
-                item.setRate(item.getRate() * 2);
+                item.setRate(1+item.getRate() * 2);
             }
-        });
+            counter++;
+        }
     }
 
     public Item findItemOnLucId(String lucId) {

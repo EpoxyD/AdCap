@@ -12,7 +12,6 @@ import adcap.entity.OrderedItem;
 import adcap.entity.OrderedItemPK;
 import adcap.entity.User;
 import adcap.entity.UserHasItem;
-import static adcap.entity.UserHasItem_.user;
 import adcap.entity.UserOrder;
 import java.util.Date;
 import java.util.List;

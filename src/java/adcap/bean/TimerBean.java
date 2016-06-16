@@ -23,9 +23,9 @@ public class TimerBean {
     
 
 
-    @Schedule(dayOfWeek = "*", month = "*", hour = "*/12", dayOfMonth = "*", year = "*", minute = "*", second = "*", persistent = false)    
+    @Schedule(dayOfWeek = "*", month = "*", hour = "*/12", dayOfMonth = "*", year = "*", minute = "0", second = "0", persistent = false)    
     public void myTimer() {
-        itemFacade.incrementAllStock();
+       itemFacade.incrementAllStock();
     }
 
 
