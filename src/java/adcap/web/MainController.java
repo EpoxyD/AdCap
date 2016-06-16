@@ -5,9 +5,9 @@
  */
 package adcap.web;
 
+import adcap.bean.Cart;
 import adcap.bean.LucBean;
 import adcap.bean.UserCounterBean;
-import adcap.cart.ShoppingCart;
 import adcap.entity.Item;
 import adcap.entity.User;
 import adcap.session.ItemFacade;
@@ -114,7 +114,7 @@ public class MainController {
         ModelAndView model = null;
         try {
             HttpSession session = request.getSession(false);
-            ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+            Cart cart = (Cart) session.getAttribute("cart");
             String itemId = request.getParameter("itemId");
             String quantity = request.getParameter("quantity");
             logger.info(itemId);
@@ -141,7 +141,7 @@ public class MainController {
         ModelAndView model = null;
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
-        ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+        Cart cart = (Cart) session.getAttribute("cart");
         int orderId;
         orderId = orderManager.placeOrder(user.getId(), cart);
         if (orderId == 0) {
@@ -158,7 +158,7 @@ public class MainController {
     public ModelAndView clear(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
-        ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+        Cart cart = (Cart) session.getAttribute("cart");
         cart.clear();
         session.setAttribute("cart", cart);
         return new ModelAndView("redirect:cart");

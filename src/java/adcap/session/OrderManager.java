@@ -5,14 +5,13 @@
  */
 package adcap.session;
 
-import adcap.cart.ShoppingCart;
-import adcap.cart.ShoppingCartItem;
+import adcap.bean.Cart;
+import adcap.entity.ShoppingCartItem;
 import adcap.entity.Item;
 import adcap.entity.OrderedItem;
 import adcap.entity.OrderedItemPK;
 import adcap.entity.User;
 import adcap.entity.UserHasItem;
-import static adcap.entity.UserHasItem_.user;
 import adcap.entity.UserOrder;
 import java.util.Date;
 import java.util.List;
@@ -55,7 +54,7 @@ public class OrderManager {
     private SessionContext context;
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public int placeOrder(int userId, ShoppingCart cart) {
+    public int placeOrder(int userId, Cart cart) {
         try {
             // get user
             User user = userFacade.find(userId);
@@ -88,7 +87,7 @@ public class OrderManager {
         return item;
     }
 
-    private UserOrder addOrder(User user, ShoppingCart cart) {
+    private UserOrder addOrder(User user, Cart cart) {
         // Set up customer order
         UserOrder order = new UserOrder();
         order.setUserId(user);
@@ -109,7 +108,7 @@ public class OrderManager {
         return order;
     }
 
-    private int addOrderedItems(UserOrder order, ShoppingCart cart) {
+    private int addOrderedItems(UserOrder order, Cart cart) {
         em.flush(); //make sure the database is updated so we get the orderId
         List<ShoppingCartItem> items = cart.getItems();
         

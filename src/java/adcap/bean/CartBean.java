@@ -3,35 +3,42 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package adcap.cart;
+package adcap.bean;
 
+import adcap.entity.ShoppingCartItem;
 import adcap.entity.Item;
-import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.TimeUnit;
+import javax.annotation.PostConstruct;
+import javax.ejb.Stateful;
+import javax.ejb.StatefulTimeout;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  *
  * @author wouter
  */
-public class ShoppingCart implements Serializable {
+@Stateful
+@StatefulTimeout(unit = TimeUnit.MINUTES, value=20)
+public class CartBean implements Cart{
     List<ShoppingCartItem> items;
     int numberOfItems;
     int total;
+        protected final Log logger = LogFactory.getLog(getClass());
 
-    public ShoppingCart() {
+    @PostConstruct
+    private void initializeBean(){
+        logger.info("cartbean initialized!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         items = new ArrayList<>();
         numberOfItems = 0;
         total = 0;
     }
-    
-    
-    /**
-     * Adds a ShoppingCartItem to the ShoppingCart's items list.
-     * If the specified item already exists, its quantity is incremented.
-     * 
-     * @param item the item to be added
-     */
-    public synchronized void addItem(Item item){
+
+    @Override
+    public void addItem(Item item) {
         boolean newItem = true;
         
         for(ShoppingCartItem scItem : items) {
@@ -45,16 +52,9 @@ public class ShoppingCart implements Serializable {
             items.add(scItem);
         }
     }
-    
-    
-    /**
-     * Updates the quantity of a specified item in the shoppingcart.
-     * If the supplied quantity is 0, the item is removed from the cart.
-     * @param item      the item to be updated      
-     * @param quantity  the new quantity
-     */
-    public synchronized void update(Item item, String quantity){
-       
+
+    @Override
+    public void update(Item item, String quantity) {
         short qty = -1;
         qty = Short.parseShort(quantity);
         
@@ -82,22 +82,12 @@ public class ShoppingCart implements Serializable {
         }
     }
 
-    
-    /**
-     * Returns the list of ShoppingCartItems
-     * 
-     * @return the item list as a List<ShoppingCartItem>
-     */
-    public synchronized List<ShoppingCartItem> getItems() {
-        return items;
+    @Override
+    public List<ShoppingCartItem> getItems() {
+        return items;    
     }
 
-    
-    /**
-     * Returns the sum of the quantities for all items in the ShoppingCart
-     * 
-     * @return the number of items as an int
-     */
+    @Override
     public int getNumberOfItems() {
         numberOfItems = 0;
         for(ShoppingCartItem scItem : items){
@@ -106,13 +96,7 @@ public class ShoppingCart implements Serializable {
         return numberOfItems;
     }
 
-    
-    /**
-     * Returns the sum of the product price multiplied by the quantity for 
-     * all items in the ShoppingCart.
-     * 
-     * @return the cost of everything in the cart as a double
-     */
+    @Override
     public int getTotal() {
         total = 0;
          for(ShoppingCartItem scItem : items) { 
@@ -120,14 +104,11 @@ public class ShoppingCart implements Serializable {
         }
         return total;
     }
-    
-    public synchronized void clear(){
+
+    @Override
+    public void clear() {
         items.clear();
         numberOfItems = 0;
         total = 0;
-    }
-
-    
-    
-    
+    }   
 }

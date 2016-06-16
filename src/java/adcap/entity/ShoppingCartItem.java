@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package adcap.cart;
+package adcap.entity;
 
 import adcap.entity.Item;
 import java.io.Serializable;

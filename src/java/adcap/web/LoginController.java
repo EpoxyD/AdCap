@@ -5,6 +5,7 @@
  */
 package adcap.web;
 
+import adcap.bean.Cart;
 import org.springframework.web.servlet.ModelAndView;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import adcap.bean.LoginBean;
 import adcap.bean.UserCounterBean;
-import adcap.cart.ShoppingCart;
 import adcap.entity.User;
 import adcap.session.UserFacade;
 import java.util.logging.Level;
@@ -24,6 +24,7 @@ import java.util.logging.Logger;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -67,8 +68,18 @@ public class LoginController {
                 logger.info("User Login Successful");
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
-                ShoppingCart cart = new ShoppingCart();
-                session.setAttribute("cart", cart);
+                
+                
+                Cart cart = (Cart) session.getAttribute("cart");
+                if(cart == null){
+                    try{
+                        InitialContext ic = new InitialContext();              
+                        cart = (Cart) ic.lookup("java:module/CartBean");
+                        session.setAttribute("cart", cart);
+                    } catch(NamingException e) {throw new ServletException(e);}
+                }
+               
+                
                 model = new ModelAndView();
                 model.setViewName("redirect:main/mainPage");
             } else {
