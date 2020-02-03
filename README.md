@@ -1,4 +1,4 @@
-# A blatent Adventure Capitalist ripoff
+# A blatant Adventure Capitalist ripoff
 
 Made with little love for Java EE
 
@@ -6,7 +6,7 @@ Made with little love for Java EE
 
 Evert Borghgraef
 Karsten Gielis
-Wouter Miewus
+Wouter Meuwis
 
 ## J2EE Glassfish Server
 
