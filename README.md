@@ -6,7 +6,7 @@ Made with little love for Java EE
 
 Evert Borghgraef
 Karsten Gielis
-Wouter Meeuwis
+Wouter Miewus
 
 ## J2EE Glassfish Server
 
